@@ -1,0 +1,18 @@
+[
+["index.html", "Practical R: a concise manual Preface", " Practical R: a concise manual Lingyun Zhang 2021-04-02 Preface To be written. "],
+["tidyverse.html", "1 Tidyverse", " 1 Tidyverse "],
+["datatable.html", "2 Datatable", " 2 Datatable "],
+["base-r.html", "3 Base R", " 3 Base R "],
+["ggplot-gridexta-patchwork.html", "4 ggplot + gridExta + patchwork", " 4 ggplot + gridExta + patchwork "],
+["writing-functions.html", "5 Writing functions", " 5 Writing functions "],
+["for-loops.html", "6 for loops", " 6 for loops "],
+["purrr-package.html", "7 purrr package", " 7 purrr package "],
+["apply-family-functions.html", "8 apply family functions", " 8 apply family functions "],
+["multiple-core-apply.html", "9 multiple core apply", " 9 multiple core apply "],
+["stringr-package.html", "10 stringr package", " 10 stringr package "],
+["lubridate-package.html", "11 lubridate package", " 11 lubridate package "],
+["gt-package.html", "12 gt package", " 12 gt package "],
+["leaflet-package.html", "13 leaflet package", " 13 leaflet package "],
+["shiny-package.html", "14 shiny package", " 14 shiny package "],
+["knitr-package.html", "15 knitr package", " 15 knitr package "]
+]

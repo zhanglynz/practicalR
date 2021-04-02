@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Practical R: a concise manual</title>
+  <meta name="description" content="Practical R: a concise manual">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Practical R: a concise manual" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Practical R: a concise manual" />
+  
+  
+  
+
+<meta name="author" content="Lingyun Zhang">
+
+
+<meta name="date" content="2021-04-02">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="purrr-package.html">
+<link rel="next" href="multiple-core-apply.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="part"><span><b>Part I: Data Importation</b></span></li>
+<li class="part"><span><b>Part II: Data Manipulation</b></span></li>
+<li class="chapter" data-level="1" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>1</b> Tidyverse</a></li>
+<li class="chapter" data-level="2" data-path="datatable.html"><a href="datatable.html"><i class="fa fa-check"></i><b>2</b> Datatable</a></li>
+<li class="part"><span><b>Part III: Data Exportation</b></span></li>
+<li class="part"><span><b>Part IV: Data Visualization</b></span></li>
+<li class="chapter" data-level="3" data-path="base-r.html"><a href="base-r.html"><i class="fa fa-check"></i><b>3</b> Base R</a></li>
+<li class="chapter" data-level="4" data-path="ggplot-gridexta-patchwork.html"><a href="ggplot-gridexta-patchwork.html"><i class="fa fa-check"></i><b>4</b> <code>ggplot</code> + <code>gridExta</code> + <code>patchwork</code></a></li>
+<li class="part"><span><b>Part V: Repeated Work</b></span></li>
+<li class="chapter" data-level="5" data-path="writing-functions.html"><a href="writing-functions.html"><i class="fa fa-check"></i><b>5</b> Writing functions</a></li>
+<li class="chapter" data-level="6" data-path="for-loops.html"><a href="for-loops.html"><i class="fa fa-check"></i><b>6</b> <code>for</code> loops</a></li>
+<li class="chapter" data-level="7" data-path="purrr-package.html"><a href="purrr-package.html"><i class="fa fa-check"></i><b>7</b> <code>purrr</code> package</a></li>
+<li class="chapter" data-level="8" data-path="apply-family-functions.html"><a href="apply-family-functions.html"><i class="fa fa-check"></i><b>8</b> apply family functions</a></li>
+<li class="chapter" data-level="9" data-path="multiple-core-apply.html"><a href="multiple-core-apply.html"><i class="fa fa-check"></i><b>9</b> multiple core apply</a></li>
+<li class="part"><span><b>Part VI: Other Packages</b></span></li>
+<li class="chapter" data-level="10" data-path="stringr-package.html"><a href="stringr-package.html"><i class="fa fa-check"></i><b>10</b> <code>stringr</code> package</a></li>
+<li class="chapter" data-level="11" data-path="lubridate-package.html"><a href="lubridate-package.html"><i class="fa fa-check"></i><b>11</b> <code>lubridate</code> package</a></li>
+<li class="chapter" data-level="12" data-path="gt-package.html"><a href="gt-package.html"><i class="fa fa-check"></i><b>12</b> <code>gt</code> package</a></li>
+<li class="chapter" data-level="13" data-path="leaflet-package.html"><a href="leaflet-package.html"><i class="fa fa-check"></i><b>13</b> <code>leaflet</code> package</a></li>
+<li class="chapter" data-level="14" data-path="shiny-package.html"><a href="shiny-package.html"><i class="fa fa-check"></i><b>14</b> <code>shiny</code> package</a></li>
+<li class="chapter" data-level="15" data-path="knitr-package.html"><a href="knitr-package.html"><i class="fa fa-check"></i><b>15</b> <code>knitr</code> package</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Practical R: a concise manual</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="apply-family-functions" class="section level1">
+<h1><span class="header-section-number">8</span> apply family functions</h1>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="purrr-package.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="multiple-core-apply.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

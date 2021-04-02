@@ -1,0 +1,73 @@
+--- 
+title: "Practical R: a concise manual"
+author: "Lingyun Zhang"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+link-citations: yes
+links-as-notes: true
+colorlinks: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Preface {-}
+
+To be written.
+
+
+# (PART\*) Part I: Data Importation {-}
+
+
+# (PART\*) Part II: Data Manipulation {-}
+
+# Tidyverse
+
+# Datatable
+
+
+# (PART\*) Part III: Data Exportation {-}
+
+
+# (PART\*) Part IV: Data Visualization {-}
+
+# Base R
+
+# `ggplot` + `gridExta` + `patchwork`
+
+
+
+# (PART\*) Part V: Repeated Work {-}
+
+# Writing functions
+
+# `for` loops
+
+# `purrr` package
+
+# apply family functions
+
+# multiple core apply
+
+# (PART\*) Part VI: Other Packages {-}
+
+# `stringr` package
+
+# `lubridate` package
+
+# `gt` package
+
+# `leaflet` package
+
+# `shiny` package
+
+# `knitr` package
+
+
+<!-- # (PART\*) Part VI: Snapshots of Other Packages {-} -->
+
+
+
