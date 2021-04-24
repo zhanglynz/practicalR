@@ -21,12 +21,74 @@ To be written.
 
 # (PART\*) Part I: Data Importation {-}
 
+File --> data frame
 
 # (PART\*) Part II: Data Manipulation {-}
 
-# Tidyverse
+# Tidyverse {#ti}
 
-# Datatable
+In this chapter (Chapter \@ref(ti)) and the next one, we deal with **data frames**, and we learn
+
+- how to create a data frame;
+- how to select from the data frame the columns that we want;
+- how to create a new column based on existed columns in the data frame;
+- how to keep the rows that meet our set conditions;
+- how to change variables' names;
+- how to arrange the data frame based on some variables;
+- how to have summary of the data frame;
+- how to convert a *long* table to a *wide* table;
+- how to convert a *wide* table to a *long* table;
+- how to re-arrange positions of variables in the data frame.
+
+The difference between Chapter \@ref(ti) and Chapter \@ref(dt) is that for the same task we use different tools (to be exact **functions**)---in this chapter we use functions that come from `tidyverse` package, whereas in the next chapter we use functions that mainly belong to `data.table` package.
+
+## `tibble`
+
+What is a `tibble`? The short answer is: a tibble is a data frame---probably this is enough, but you may also want to know that---it's an enhanced data frame in a sense that it forces some rules (e.g. type rule) to be more strictly obeyed (the effects are: on one hand side, you lose some freedom associated with a data frame, on the other hand side, it prevents you from making some subtle mistakes while dealing with a data frame.) Tidyverse community encourages people to use tibbles. A tibble may not be working with some (old) packages, in that case, just use `as.data.frame()` to do converting.  
+
+## Creating a data frame
+
+We can use `data.frame()` to create a data frame; one important thing is that we should **almost always** set `stringsAsFactors = FALSE`. 
+
+To create a tibble, we use `tidyverse::tibble()`
+
+Example 1:
+```{r warning=FALSE, message=FALSE}
+a_df <- 
+  data.frame(x = c(1L:3L, NA, NA),
+             y = rnorm(5),
+             z = c(NA, 'a', NA, 'b', 'c'),
+             stringsAsFactors = FALSE)
+(a_df)
+```
+
+Example 2:
+```{r warning=FALSE, message=FALSE}
+library(tidyverse)
+a_tibble <- 
+  tibble(x = c(1L:3L, NA, NA),
+         y = rnorm(5),
+         z = c(NA, 'a', NA, 'b', 'c'))
+(a_tibble)
+```
+
+
+Example 3: tibble is more "strict"
+
+You can run the following code if you want but it silently changes the type of variable `x` from integer to character.
+```{r, warning=FALSE, message=FALSE, eval=FALSE}
+a_df[is.na(a_df)] <- ""
+```
+If you run the following code you get an error message
+```{r, warning=FALSE, message=FALSE, eval=FALSE}
+a_tibble[is.na(a_tibble)] <- ""
+```
+![Erro message](./figs/error_message_ex3_in_ch1.PNG)
+
+
+
+
+# Data.table {#dt}
 
 
 # (PART\*) Part III: Data Exportation {-}
