@@ -25,7 +25,7 @@
 <meta name="author" content="Lingyun Zhang">
 
 
-<meta name="date" content="2021-04-24">
+<meta name="date" content="2021-04-25">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -102,11 +102,26 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
 <li class="part"><span><b>Part I: Data Importation</b></span></li>
 <li class="part"><span><b>Part II: Data Manipulation</b></span></li>
-<li class="chapter" data-level="1" data-path="ti.html"><a href="ti.html"><i class="fa fa-check"></i><b>1</b> Tidyverse</a><ul>
+<li class="chapter" data-level="1" data-path="ti.html"><a href="ti.html"><i class="fa fa-check"></i><b>1</b> Tidyverse way</a><ul>
 <li class="chapter" data-level="1.1" data-path="ti.html"><a href="ti.html#tibble"><i class="fa fa-check"></i><b>1.1</b> <code>tibble</code></a></li>
-<li class="chapter" data-level="1.2" data-path="ti.html"><a href="ti.html#creating-a-data-frame"><i class="fa fa-check"></i><b>1.2</b> Creating a data frame</a></li>
+<li class="chapter" data-level="1.2" data-path="ti.html"><a href="ti.html#creating-a-tibble"><i class="fa fa-check"></i><b>1.2</b> Creating a tibble</a></li>
+<li class="chapter" data-level="1.3" data-path="ti.html"><a href="ti.html#selecting-columns"><i class="fa fa-check"></i><b>1.3</b> Selecting columns</a></li>
+<li class="chapter" data-level="1.4" data-path="ti.html"><a href="ti.html#creating-new-column"><i class="fa fa-check"></i><b>1.4</b> Creating new column</a></li>
+<li class="chapter" data-level="1.5" data-path="ti.html"><a href="ti.html#keeping-some-rows"><i class="fa fa-check"></i><b>1.5</b> Keeping some rows</a></li>
+<li class="chapter" data-level="1.6" data-path="ti.html"><a href="ti.html#arrange-rows"><i class="fa fa-check"></i><b>1.6</b> Arrange rows</a></li>
+<li class="chapter" data-level="1.7" data-path="ti.html"><a href="ti.html#changing-variables-names"><i class="fa fa-check"></i><b>1.7</b> Changing variables’ names</a></li>
+<li class="chapter" data-level="1.8" data-path="ti.html"><a href="ti.html#re-arranging-variables-positions"><i class="fa fa-check"></i><b>1.8</b> Re-arranging variables’ positions</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="dt.html"><a href="dt.html"><i class="fa fa-check"></i><b>2</b> Data.table</a></li>
+<li class="chapter" data-level="2" data-path="dt.html"><a href="dt.html"><i class="fa fa-check"></i><b>2</b> Data.table way</a><ul>
+<li class="chapter" data-level="2.1" data-path="dt.html"><a href="dt.html#data.table"><i class="fa fa-check"></i><b>2.1</b> <code>data.table</code></a></li>
+<li class="chapter" data-level="2.2" data-path="dt.html"><a href="dt.html#creating-a-data.table"><i class="fa fa-check"></i><b>2.2</b> Creating a data.table</a></li>
+<li class="chapter" data-level="2.3" data-path="dt.html"><a href="dt.html#selecting-columns-1"><i class="fa fa-check"></i><b>2.3</b> Selecting columns</a></li>
+<li class="chapter" data-level="2.4" data-path="dt.html"><a href="dt.html#creating-new-column-1"><i class="fa fa-check"></i><b>2.4</b> Creating new column</a></li>
+<li class="chapter" data-level="2.5" data-path="dt.html"><a href="dt.html#keeping-some-rows-1"><i class="fa fa-check"></i><b>2.5</b> Keeping some rows</a></li>
+<li class="chapter" data-level="2.6" data-path="dt.html"><a href="dt.html#arrange-rows-1"><i class="fa fa-check"></i><b>2.6</b> Arrange rows</a></li>
+<li class="chapter" data-level="2.7" data-path="dt.html"><a href="dt.html#changing-variables-names-1"><i class="fa fa-check"></i><b>2.7</b> Changing variables’ names</a></li>
+<li class="chapter" data-level="2.8" data-path="dt.html"><a href="dt.html#re-arranging-variables-positions-1"><i class="fa fa-check"></i><b>2.8</b> Re-arranging variables’ positions</a></li>
+</ul></li>
 <li class="part"><span><b>Part III: Data Exportation</b></span></li>
 <li class="part"><span><b>Part IV: Data Visualization</b></span></li>
 <li class="chapter" data-level="3" data-path="base-r.html"><a href="base-r.html"><i class="fa fa-check"></i><b>3</b> Base R</a></li>
@@ -142,7 +157,146 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="dt" class="section level1">
-<h1><span class="header-section-number">2</span> Data.table</h1>
+<h1><span class="header-section-number">2</span> Data.table way</h1>
+<p>The first line of R codes in this chapter should be</p>
+<p><code>library(data.table)</code></p>
+<p>What can be done with <code>dplyr</code> package (one component of <code>tidyverse</code> package; dplyr stands for “data frame apply r”) can also be done using ‘data.table’ package, and vice versa. Lots of people like <code>data.talbe</code> package for many reasons, in particular fast speed of data.table codes. To me, if I need to deal with data set of one million or more rows, then I will switch from using <code>dplyr</code> to <code>data.table</code> package.</p>
+<div id="data.table" class="section level2">
+<h2><span class="header-section-number">2.1</span> <code>data.table</code></h2>
+<p>What is a data.table? The answer is: It is an <strong>enhanced version of data frame</strong>. The meaning of “enhanced” is that it allows</p>
+<p><code>DT[i, j, by]</code></p>
+<p>that is, “take <code>DT</code>, subset/reorder rows using <code>i</code>, then calculate <code>j</code>, grouped by <code>by</code>” (see this and detailed explanations from <a href="https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html" class="uri">https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html</a>)</p>
+</div>
+<div id="creating-a-data.table" class="section level2">
+<h2><span class="header-section-number">2.2</span> Creating a data.table</h2>
+<p>We use <code>data.table()</code> to create a data.table. For converting from a data frame to a data.table, we use <code>SetDT</code> (especially for large data set) or <code>as.data.table</code>.</p>
+<p><strong>Example:</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(data.table)
+a_dt &lt;-<span class="st"> </span>
+<span class="st">  </span><span class="kw">data.table</span>(<span class="dt">ID =</span> letters[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>],
+             <span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,
+             <span class="dt">y =</span> month.name[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>])
+(a_dt)</code></pre></div>
+<pre><code>##    ID x        y
+## 1:  a 1  January
+## 2:  b 2 February
+## 3:  c 3    March
+## 4:  d 4    April
+## 5:  e 5      May</code></pre>
+</div>
+<div id="selecting-columns-1" class="section level2">
+<h2><span class="header-section-number">2.3</span> Selecting columns</h2>
+<p>The syntax is:</p>
+<p><code>DT[, .(&lt;sel_var1 =&gt; var1, &lt;sel_var2 =&gt; var2)]</code> where <code>&lt;...&gt;</code> means optional;</p>
+<p>or</p>
+<p><code>DT[, c(&quot;var1&quot;, &quot;var2&quot;)]</code></p>
+<p>or</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sel_cols &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;var1&quot;</span>, <span class="st">&quot;var2&quot;</span>)
+DT[, sel_cols, with =<span class="st"> </span><span class="ot">FALSE</span>]</code></pre></div>
+<p><strong>Example:</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">b_dt &lt;-<span class="st"> </span>a_dt[, .(<span class="dt">new_y =</span> y, <span class="dt">new_x =</span> x)]
+(b_dt)</code></pre></div>
+<pre><code>##       new_y new_x
+## 1:  January     1
+## 2: February     2
+## 3:    March     3
+## 4:    April     4
+## 5:      May     5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vars_to_choose &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ID&quot;</span>, <span class="st">&quot;y&quot;</span>)
+c_dt &lt;-<span class="st"> </span>a_dt[, vars_to_choose, with =<span class="st"> </span><span class="ot">FALSE</span>]
+(c_dt)</code></pre></div>
+<pre><code>##    ID        y
+## 1:  a  January
+## 2:  b February
+## 3:  c    March
+## 4:  d    April
+## 5:  e      May</code></pre>
+</div>
+<div id="creating-new-column-1" class="section level2">
+<h2><span class="header-section-number">2.4</span> Creating new column</h2>
+<p>The syntax is</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">new_DT -&gt;<span class="st"> </span><span class="kw">copy</span>(DT)
+new_DT[, <span class="st">`</span><span class="dt">:=</span><span class="st">`</span>(<span class="dt">new_var =</span> <span class="kw">func</span>(existed_vars))]</code></pre></div>
+<p>If we care about memory and are aware of all possible <em>side effects</em> on the original <code>DT</code>, we can do</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DT[, <span class="st">`</span><span class="dt">:=</span><span class="st">`</span>(<span class="dt">new_var =</span> <span class="kw">func</span>(existed_vars))]</code></pre></div>
+<p>About “side effects” of <code>:=</code>, see <a href="https://cran.r-project.org/web/packages/data.table/vignettes/datatable-reference-semantics.html" class="uri">https://cran.r-project.org/web/packages/data.table/vignettes/datatable-reference-semantics.html</a></p>
+<p><strong>Example:</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(the_name &lt;-<span class="st"> </span><span class="kw">names</span>(a_dt))</code></pre></div>
+<pre><code>## [1] &quot;ID&quot; &quot;x&quot;  &quot;y&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">new_dt &lt;-<span class="st"> </span><span class="kw">copy</span>(a_dt)
+new_dt[, <span class="st">`</span><span class="dt">:=</span><span class="st">`</span>(<span class="dt">u =</span> x<span class="op">^</span><span class="dv">2</span>)]
+(new_dt)</code></pre></div>
+<pre><code>##    ID x        y  u
+## 1:  a 1  January  1
+## 2:  b 2 February  4
+## 3:  c 3    March  9
+## 4:  d 4    April 16
+## 5:  e 5      May 25</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a_dt[, <span class="st">`</span><span class="dt">:=</span><span class="st">`</span>(<span class="dt">u =</span> x<span class="op">^</span><span class="dv">2</span>)]
+(a_dt)</code></pre></div>
+<pre><code>##    ID x        y  u
+## 1:  a 1  January  1
+## 2:  b 2 February  4
+## 3:  c 3    March  9
+## 4:  d 4    April 16
+## 5:  e 5      May 25</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(the_name) <span class="co"># it&#39;s also updated!</span></code></pre></div>
+<pre><code>## [1] &quot;ID&quot; &quot;x&quot;  &quot;y&quot;  &quot;u&quot;</code></pre>
+</div>
+<div id="keeping-some-rows-1" class="section level2">
+<h2><span class="header-section-number">2.5</span> Keeping some rows</h2>
+<p>The syntax is</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">new_DT &lt;-<span class="st"> </span>DT[var1 <span class="op">==</span><span class="st"> </span>sth <span class="op">&amp;</span><span class="st"> </span>var2 <span class="op">&gt;</span><span class="st"> </span>sth <span class="op">|</span><span class="st"> </span>vars <span class="op">!=</span><span class="st"> </span>sth]</code></pre></div>
+<p><strong>Example:</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dt_new &lt;-<span class="st"> </span>a_dt[x<span class="op">%%</span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span> <span class="op">|</span><span class="st"> </span>u <span class="op">==</span><span class="st"> </span><span class="dv">9</span>]
+(dt_new)</code></pre></div>
+<pre><code>##    ID x        y  u
+## 1:  b 2 February  4
+## 2:  c 3    March  9
+## 3:  d 4    April 16</code></pre>
+</div>
+<div id="arrange-rows-1" class="section level2">
+<h2><span class="header-section-number">2.6</span> Arrange rows</h2>
+<p>The syntax is</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DT[<span class="kw">order</span>(var1, <span class="op">-</span>var2)]</code></pre></div>
+<p><strong>Example:</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">d_dt &lt;-<span class="st"> </span>a_dt[<span class="kw">order</span>(<span class="op">-</span>ID)]
+(d_dt)</code></pre></div>
+<pre><code>##    ID x        y  u
+## 1:  e 5      May 25
+## 2:  d 4    April 16
+## 3:  c 3    March  9
+## 4:  b 2 February  4
+## 5:  a 1  January  1</code></pre>
+</div>
+<div id="changing-variables-names-1" class="section level2">
+<h2><span class="header-section-number">2.7</span> Changing variables’ names</h2>
+<p>The syntax is</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setnames</span>(DT, <span class="st">&quot;old_name&quot;</span>, <span class="st">&quot;new_name&quot;</span>)</code></pre></div>
+<p><strong>Example:</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setnames</span>(a_dt, <span class="kw">c</span>(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>), <span class="kw">c</span>(<span class="st">&quot;new_x&quot;</span>, <span class="st">&quot;new_y&quot;</span>))
+(a_dt)</code></pre></div>
+<pre><code>##    ID new_x    new_y  u
+## 1:  a     1  January  1
+## 2:  b     2 February  4
+## 3:  c     3    March  9
+## 4:  d     4    April 16
+## 5:  e     5      May 25</code></pre>
+</div>
+<div id="re-arranging-variables-positions-1" class="section level2">
+<h2><span class="header-section-number">2.8</span> Re-arranging variables’ positions</h2>
+<p>The syntax is</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setcolorder</span>(DT, <span class="dt">neworder =</span> new_order)</code></pre></div>
+<p><strong>Example:</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setcolorder</span>(a_dt, <span class="dt">neworder =</span> <span class="kw">c</span>(<span class="st">&quot;ID&quot;</span>, <span class="st">&quot;u&quot;</span>, <span class="st">&quot;new_y&quot;</span>, <span class="st">&quot;new_x&quot;</span>))
+(a_dt)</code></pre></div>
+<pre><code>##    ID  u    new_y new_x
+## 1:  a  1  January     1
+## 2:  b  4 February     2
+## 3:  c  9    March     3
+## 4:  d 16    April     4
+## 5:  e 25      May     5</code></pre>
+</div>
 </div>
 
 

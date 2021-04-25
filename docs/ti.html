@@ -25,7 +25,7 @@
 <meta name="author" content="Lingyun Zhang">
 
 
-<meta name="date" content="2021-04-24">
+<meta name="date" content="2021-04-25">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -102,11 +102,26 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
 <li class="part"><span><b>Part I: Data Importation</b></span></li>
 <li class="part"><span><b>Part II: Data Manipulation</b></span></li>
-<li class="chapter" data-level="1" data-path="ti.html"><a href="ti.html"><i class="fa fa-check"></i><b>1</b> Tidyverse</a><ul>
+<li class="chapter" data-level="1" data-path="ti.html"><a href="ti.html"><i class="fa fa-check"></i><b>1</b> Tidyverse way</a><ul>
 <li class="chapter" data-level="1.1" data-path="ti.html"><a href="ti.html#tibble"><i class="fa fa-check"></i><b>1.1</b> <code>tibble</code></a></li>
-<li class="chapter" data-level="1.2" data-path="ti.html"><a href="ti.html#creating-a-data-frame"><i class="fa fa-check"></i><b>1.2</b> Creating a data frame</a></li>
+<li class="chapter" data-level="1.2" data-path="ti.html"><a href="ti.html#creating-a-tibble"><i class="fa fa-check"></i><b>1.2</b> Creating a tibble</a></li>
+<li class="chapter" data-level="1.3" data-path="ti.html"><a href="ti.html#selecting-columns"><i class="fa fa-check"></i><b>1.3</b> Selecting columns</a></li>
+<li class="chapter" data-level="1.4" data-path="ti.html"><a href="ti.html#creating-new-column"><i class="fa fa-check"></i><b>1.4</b> Creating new column</a></li>
+<li class="chapter" data-level="1.5" data-path="ti.html"><a href="ti.html#keeping-some-rows"><i class="fa fa-check"></i><b>1.5</b> Keeping some rows</a></li>
+<li class="chapter" data-level="1.6" data-path="ti.html"><a href="ti.html#arrange-rows"><i class="fa fa-check"></i><b>1.6</b> Arrange rows</a></li>
+<li class="chapter" data-level="1.7" data-path="ti.html"><a href="ti.html#changing-variables-names"><i class="fa fa-check"></i><b>1.7</b> Changing variables’ names</a></li>
+<li class="chapter" data-level="1.8" data-path="ti.html"><a href="ti.html#re-arranging-variables-positions"><i class="fa fa-check"></i><b>1.8</b> Re-arranging variables’ positions</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="dt.html"><a href="dt.html"><i class="fa fa-check"></i><b>2</b> Data.table</a></li>
+<li class="chapter" data-level="2" data-path="dt.html"><a href="dt.html"><i class="fa fa-check"></i><b>2</b> Data.table way</a><ul>
+<li class="chapter" data-level="2.1" data-path="dt.html"><a href="dt.html#data.table"><i class="fa fa-check"></i><b>2.1</b> <code>data.table</code></a></li>
+<li class="chapter" data-level="2.2" data-path="dt.html"><a href="dt.html#creating-a-data.table"><i class="fa fa-check"></i><b>2.2</b> Creating a data.table</a></li>
+<li class="chapter" data-level="2.3" data-path="dt.html"><a href="dt.html#selecting-columns-1"><i class="fa fa-check"></i><b>2.3</b> Selecting columns</a></li>
+<li class="chapter" data-level="2.4" data-path="dt.html"><a href="dt.html#creating-new-column-1"><i class="fa fa-check"></i><b>2.4</b> Creating new column</a></li>
+<li class="chapter" data-level="2.5" data-path="dt.html"><a href="dt.html#keeping-some-rows-1"><i class="fa fa-check"></i><b>2.5</b> Keeping some rows</a></li>
+<li class="chapter" data-level="2.6" data-path="dt.html"><a href="dt.html#arrange-rows-1"><i class="fa fa-check"></i><b>2.6</b> Arrange rows</a></li>
+<li class="chapter" data-level="2.7" data-path="dt.html"><a href="dt.html#changing-variables-names-1"><i class="fa fa-check"></i><b>2.7</b> Changing variables’ names</a></li>
+<li class="chapter" data-level="2.8" data-path="dt.html"><a href="dt.html#re-arranging-variables-positions-1"><i class="fa fa-check"></i><b>2.8</b> Re-arranging variables’ positions</a></li>
+</ul></li>
 <li class="part"><span><b>Part III: Data Exportation</b></span></li>
 <li class="part"><span><b>Part IV: Data Visualization</b></span></li>
 <li class="chapter" data-level="3" data-path="base-r.html"><a href="base-r.html"><i class="fa fa-check"></i><b>3</b> Base R</a></li>
@@ -142,43 +157,45 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="ti" class="section level1">
-<h1><span class="header-section-number">1</span> Tidyverse</h1>
-<p>In this chapter (Chapter <a href="ti.html#ti">1</a>) and the next one, we deal with <strong>data frames</strong>, and we learn</p>
+<h1><span class="header-section-number">1</span> Tidyverse way</h1>
+<p>In this chapter (Chapter <a href="ti.html#ti">1</a>) and the next one, we deal with <strong>data frames</strong>, and we cover</p>
 <ul>
 <li>how to create a data frame;</li>
 <li>how to select from the data frame the columns that we want;</li>
 <li>how to create a new column based on existed columns in the data frame;</li>
 <li>how to keep the rows that meet our set conditions;</li>
-<li>how to change variables’ names;</li>
 <li>how to arrange the data frame based on some variables;</li>
+<li>how to change variables’ names;</li>
+<li>how to re-arrange positions of variables in the data frame;</li>
 <li>how to have summary of the data frame;</li>
 <li>how to convert a <em>long</em> table to a <em>wide</em> table;</li>
 <li>how to convert a <em>wide</em> table to a <em>long</em> table;</li>
-<li>how to re-arrange positions of variables in the data frame.</li>
 </ul>
 <p>The difference between Chapter <a href="ti.html#ti">1</a> and Chapter <a href="dt.html#dt">2</a> is that for the same task we use different tools (to be exact <strong>functions</strong>)—in this chapter we use functions that come from <code>tidyverse</code> package, whereas in the next chapter we use functions that mainly belong to <code>data.table</code> package.</p>
+<p>The first line of R codes in this chapter should be</p>
+<p><code>library(tidyverse)</code></p>
 <div id="tibble" class="section level2">
 <h2><span class="header-section-number">1.1</span> <code>tibble</code></h2>
-<p>What is a <code>tibble</code>? The short answer is: a tibble is a data frame—probably this is enough, but you may also want to know that—it’s an enhanced data frame in a sense that it forces some rules (e.g. type rule) to be more strictly obeyed (the effects are: on one hand side, you lose some freedom associated with a data frame, on the other hand side, it prevents you from making some subtle mistakes while dealing with a data frame.) Tidyverse community encourages people to use tibbles. A tibble may not be working with some (old) packages, in that case, just use <code>as.data.frame()</code> to do converting.</p>
+<p>What is a <code>tibble</code>? The short answer is: A tibble is a data frame—probably this is enough, but we may also want to know that—it’s an enhanced data frame in a sense that it forces some rules (e.g. type rule) to be more strictly obeyed (the effects are: on one hand side, we lose some freedom associated with a data frame, on the other hand side, it prevents us from making some subtle mistakes while dealing with a data frame.) Tidyverse community encourages people to use tibbles. A tibble may not be working with some (old) packages, in that case, just use <code>as.data.frame()</code> to do converting. We can convert a data frame to a tibble by using <code>tibble::as_tibble()</code>.</p>
 </div>
-<div id="creating-a-data-frame" class="section level2">
-<h2><span class="header-section-number">1.2</span> Creating a data frame</h2>
+<div id="creating-a-tibble" class="section level2">
+<h2><span class="header-section-number">1.2</span> Creating a tibble</h2>
 <p>We can use <code>data.frame()</code> to create a data frame; one important thing is that we should <strong>almost always</strong> set <code>stringsAsFactors = FALSE</code>.</p>
-<p>To create a tibble, we use <code>tidyverse::tibble()</code></p>
-<p>Example 1:</p>
+<p>To create a tibble, we use <code>tibble::tibble()</code></p>
+<p><strong>Example 1:</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a_df &lt;-<span class="st"> </span>
 <span class="st">  </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">c</span>(1L<span class="op">:</span>3L, <span class="ot">NA</span>, <span class="ot">NA</span>),
              <span class="dt">y =</span> <span class="kw">rnorm</span>(<span class="dv">5</span>),
              <span class="dt">z =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="st">&#39;a&#39;</span>, <span class="ot">NA</span>, <span class="st">&#39;b&#39;</span>, <span class="st">&#39;c&#39;</span>),
              <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
 (a_df)</code></pre></div>
-<pre><code>##    x         y    z
-## 1  1 0.3834964 &lt;NA&gt;
-## 2  2 1.8981069    a
-## 3  3 0.5972493 &lt;NA&gt;
-## 4 NA 1.6795288    b
-## 5 NA 0.6449096    c</code></pre>
-<p>Example 2:</p>
+<pre><code>##    x          y    z
+## 1  1  1.3381123 &lt;NA&gt;
+## 2  2 -2.5159169    a
+## 3  3  1.2380736 &lt;NA&gt;
+## 4 NA -1.1468342    b
+## 5 NA  0.2642254    c</code></pre>
+<p><strong>Example 2:</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
 a_tibble &lt;-<span class="st"> </span>
 <span class="st">  </span><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="kw">c</span>(1L<span class="op">:</span>3L, <span class="ot">NA</span>, <span class="ot">NA</span>),
@@ -188,20 +205,123 @@ a_tibble &lt;-<span class="st"> </span>
 <pre><code>## # A tibble: 5 x 3
 ##       x      y z    
 ##   &lt;int&gt;  &lt;dbl&gt; &lt;chr&gt;
-## 1     1 -0.692 &lt;NA&gt; 
-## 2     2  1.00  a    
-## 3     3  0.110 &lt;NA&gt; 
-## 4    NA  0.277 b    
-## 5    NA  1.09  c</code></pre>
-<p>Example 3: tibble is more “strict”</p>
-<p>You can run the following code if you want but it silently changes the type of variable <code>x</code> from integer to character.</p>
+## 1     1 -0.184 &lt;NA&gt; 
+## 2     2  0.283 a    
+## 3     3 -0.135 &lt;NA&gt; 
+## 4    NA  0.723 b    
+## 5    NA  0.653 c</code></pre>
+<p><strong>Example 3:</strong> tibble is more “strict”</p>
+<p>We can run the following code if we want but it silently changes the type of variable <code>x</code> from integer to character.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a_df[<span class="kw">is.na</span>(a_df)] &lt;-<span class="st"> &quot;&quot;</span></code></pre></div>
-<p>If you run the following code you get an error message</p>
+<p>If we run the following code we get an error message</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a_tibble[<span class="kw">is.na</span>(a_tibble)] &lt;-<span class="st"> &quot;&quot;</span></code></pre></div>
 <div class="figure">
-<img src="figs/error_message_ex3_in_ch1.PNG" alt="Erro message" />
-<p class="caption">Erro message</p>
+<img src="figs/error_message_ex3_in_ch1.PNG" alt="Error message" />
+<p class="caption">Error message</p>
 </div>
+</div>
+<div id="selecting-columns" class="section level2">
+<h2><span class="header-section-number">1.3</span> Selecting columns</h2>
+<p>We can use functions <code>select()</code> and <code>select_at()</code>.</p>
+<p><strong>Example 1:</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">b_df &lt;-<span class="st"> </span><span class="kw">select</span>(a_df, x, y)
+(b_df)</code></pre></div>
+<pre><code>##    x          y
+## 1  1  1.3381123
+## 2  2 -2.5159169
+## 3  3  1.2380736
+## 4 NA -1.1468342
+## 5 NA  0.2642254</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(<span class="kw">c</span>(<span class="kw">is.tibble</span>(a_df), <span class="kw">is.tibble</span>(b_df), <span class="kw">is.data.frame</span>(b_df)))</code></pre></div>
+<pre><code>## [1] FALSE FALSE  TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">c_df &lt;-<span class="st"> </span><span class="kw">select_at</span>(a_df, <span class="dt">.var =</span> <span class="kw">c</span>(<span class="st">&quot;z&quot;</span>, <span class="st">&quot;y&quot;</span>))
+(c_df)</code></pre></div>
+<pre><code>##      z          y
+## 1 &lt;NA&gt;  1.3381123
+## 2    a -2.5159169
+## 3 &lt;NA&gt;  1.2380736
+## 4    b -1.1468342
+## 5    c  0.2642254</code></pre>
+<p><strong>Example 2:</strong> Selecting plus renaming</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">d_df &lt;-<span class="st"> </span><span class="kw">select</span>(a_df, <span class="dt">new_x =</span> x, <span class="dt">new_y =</span> y)
+(d_df)</code></pre></div>
+<pre><code>##   new_x      new_y
+## 1     1  1.3381123
+## 2     2 -2.5159169
+## 3     3  1.2380736
+## 4    NA -1.1468342
+## 5    NA  0.2642254</code></pre>
+</div>
+<div id="creating-new-column" class="section level2">
+<h2><span class="header-section-number">1.4</span> Creating new column</h2>
+<p>We use function <code>mutate()</code></p>
+<p><strong>Example 1:</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">e_df &lt;-<span class="st"> </span><span class="kw">mutate</span>(a_df, <span class="dt">u =</span> y<span class="op">^</span><span class="dv">2</span>, <span class="dt">v =</span> <span class="kw">is.na</span>(z))
+(e_df)</code></pre></div>
+<pre><code>##    x          y    z          u     v
+## 1  1  1.3381123 &lt;NA&gt; 1.79054442  TRUE
+## 2  2 -2.5159169    a 6.32983810 FALSE
+## 3  3  1.2380736 &lt;NA&gt; 1.53282614  TRUE
+## 4 NA -1.1468342    b 1.31522864 FALSE
+## 5 NA  0.2642254    c 0.06981507 FALSE</code></pre>
+</div>
+<div id="keeping-some-rows" class="section level2">
+<h2><span class="header-section-number">1.5</span> Keeping some rows</h2>
+<p>For keeping the rows that meet certain conditions, we use <code>filter()</code>.</p>
+<p><strong>Example:</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f_df &lt;-<span class="st"> </span><span class="kw">filter</span>(a_df, <span class="kw">abs</span>(y) <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.5</span> <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(z))
+(f_df)</code></pre></div>
+<pre><code>##    x         y z
+## 1  2 -2.515917 a
+## 2 NA -1.146834 b</code></pre>
+</div>
+<div id="arrange-rows" class="section level2">
+<h2><span class="header-section-number">1.6</span> Arrange rows</h2>
+<p>Some rows of the data frame will be put at the top and other rows will be put at the bottom; for this purpose, we use <code>arrange()</code>.</p>
+<p><strong>Example:</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">g_df &lt;-<span class="st"> </span><span class="kw">arrange</span>(a_df, <span class="kw">desc</span>(z))
+(g_df)</code></pre></div>
+<pre><code>##    x          y    z
+## 1 NA  0.2642254    c
+## 2 NA -1.1468342    b
+## 3  2 -2.5159169    a
+## 4  1  1.3381123 &lt;NA&gt;
+## 5  3  1.2380736 &lt;NA&gt;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">h_df &lt;-<span class="st"> </span><span class="kw">arrange</span>(a_df, <span class="kw">desc</span>(z), y)
+(h_df)</code></pre></div>
+<pre><code>##    x          y    z
+## 1 NA  0.2642254    c
+## 2 NA -1.1468342    b
+## 3  2 -2.5159169    a
+## 4  3  1.2380736 &lt;NA&gt;
+## 5  1  1.3381123 &lt;NA&gt;</code></pre>
+</div>
+<div id="changing-variables-names" class="section level2">
+<h2><span class="header-section-number">1.7</span> Changing variables’ names</h2>
+<p>We use <code>rename()</code>.</p>
+<p><strong>Example:</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">i_df &lt;-<span class="st"> </span><span class="kw">rename</span>(a_df, <span class="dt">new_z =</span> z)
+(i_df)</code></pre></div>
+<pre><code>##    x          y new_z
+## 1  1  1.3381123  &lt;NA&gt;
+## 2  2 -2.5159169     a
+## 3  3  1.2380736  &lt;NA&gt;
+## 4 NA -1.1468342     b
+## 5 NA  0.2642254     c</code></pre>
+</div>
+<div id="re-arranging-variables-positions" class="section level2">
+<h2><span class="header-section-number">1.8</span> Re-arranging variables’ positions</h2>
+<p>For outputting purpose, we may want to re-arrange variables’ positions, and we can use <code>select_at()</code> or <code>setcolorder</code></p>
+<p><strong>Example:</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">new_var_oder &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;z&quot;</span>, <span class="st">&quot;y&quot;</span>, <span class="st">&quot;x&quot;</span>)
+j_df &lt;-<span class="st"> </span><span class="kw">select_at</span>(a_df, <span class="dt">.var =</span> new_var_oder)
+(j_df)</code></pre></div>
+<pre><code>##      z          y  x
+## 1 &lt;NA&gt;  1.3381123  1
+## 2    a -2.5159169  2
+## 3 &lt;NA&gt;  1.2380736  3
+## 4    b -1.1468342 NA
+## 5    c  0.2642254 NA</code></pre>
 </div>
 </div>
             </section>

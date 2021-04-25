@@ -21,38 +21,42 @@ To be written.
 
 # (PART\*) Part I: Data Importation {-}
 
-File --> data frame
 
 # (PART\*) Part II: Data Manipulation {-}
 
-# Tidyverse {#ti}
+# Tidyverse way {#ti}
 
-In this chapter (Chapter \@ref(ti)) and the next one, we deal with **data frames**, and we learn
+In this chapter (Chapter \@ref(ti)) and the next one, we deal with **data frames**, and we cover
 
 - how to create a data frame;
 - how to select from the data frame the columns that we want;
 - how to create a new column based on existed columns in the data frame;
 - how to keep the rows that meet our set conditions;
-- how to change variables' names;
 - how to arrange the data frame based on some variables;
+- how to change variables' names;
+- how to re-arrange positions of variables in the data frame;
 - how to have summary of the data frame;
 - how to convert a *long* table to a *wide* table;
 - how to convert a *wide* table to a *long* table;
-- how to re-arrange positions of variables in the data frame.
+
 
 The difference between Chapter \@ref(ti) and Chapter \@ref(dt) is that for the same task we use different tools (to be exact **functions**)---in this chapter we use functions that come from `tidyverse` package, whereas in the next chapter we use functions that mainly belong to `data.table` package.
 
+The first line of R codes in this chapter should be
+
+`library(tidyverse)`
+
 ## `tibble`
 
-What is a `tibble`? The short answer is: a tibble is a data frame---probably this is enough, but you may also want to know that---it's an enhanced data frame in a sense that it forces some rules (e.g. type rule) to be more strictly obeyed (the effects are: on one hand side, you lose some freedom associated with a data frame, on the other hand side, it prevents you from making some subtle mistakes while dealing with a data frame.) Tidyverse community encourages people to use tibbles. A tibble may not be working with some (old) packages, in that case, just use `as.data.frame()` to do converting.  
+What is a `tibble`? The short answer is: A tibble is a data frame---probably this is enough, but we may also want to know that---it's an enhanced data frame in a sense that it forces some rules (e.g. type rule) to be more strictly obeyed (the effects are: on one hand side, we lose some freedom associated with a data frame, on the other hand side, it prevents us from making some subtle mistakes while dealing with a data frame.) Tidyverse community encourages people to use tibbles. A tibble may not be working with some (old) packages, in that case, just use `as.data.frame()` to do converting. We can convert a data frame to a tibble by using `tibble::as_tibble()`. 
 
-## Creating a data frame
+## Creating a tibble
 
 We can use `data.frame()` to create a data frame; one important thing is that we should **almost always** set `stringsAsFactors = FALSE`. 
 
-To create a tibble, we use `tidyverse::tibble()`
+To create a tibble, we use `tibble::tibble()`
 
-Example 1:
+**Example 1:**
 ```{r warning=FALSE, message=FALSE}
 a_df <- 
   data.frame(x = c(1L:3L, NA, NA),
@@ -62,7 +66,7 @@ a_df <-
 (a_df)
 ```
 
-Example 2:
+**Example 2:**
 ```{r warning=FALSE, message=FALSE}
 library(tidyverse)
 a_tibble <- 
@@ -73,22 +77,234 @@ a_tibble <-
 ```
 
 
-Example 3: tibble is more "strict"
+**Example 3:** tibble is more "strict"
 
-You can run the following code if you want but it silently changes the type of variable `x` from integer to character.
+We can run the following code if we want but it silently changes the type of variable `x` from integer to character.
 ```{r, warning=FALSE, message=FALSE, eval=FALSE}
 a_df[is.na(a_df)] <- ""
 ```
-If you run the following code you get an error message
+If we run the following code we get an error message
 ```{r, warning=FALSE, message=FALSE, eval=FALSE}
 a_tibble[is.na(a_tibble)] <- ""
 ```
-![Erro message](./figs/error_message_ex3_in_ch1.PNG)
+![Error message](./figs/error_message_ex3_in_ch1.PNG)
 
 
+## Selecting columns
+
+We can use functions `select()` and `select_at()`.
+
+**Example 1:**
+```{r, warning=FALSE, message=FALSE}
+b_df <- select(a_df, x, y)
+(b_df)
+(c(is.tibble(a_df), is.tibble(b_df), is.data.frame(b_df)))
+
+c_df <- select_at(a_df, .var = c("z", "y"))
+(c_df)
+```
+
+**Example 2:** Selecting plus renaming
+```{r, warning=FALSE, message=FALSE}
+d_df <- select(a_df, new_x = x, new_y = y)
+(d_df)
+```
+
+## Creating new column
+
+We use function `mutate()`
+
+**Example 1:**
+```{r, warning=FALSE, message=FALSE}
+e_df <- mutate(a_df, u = y^2, v = is.na(z))
+(e_df)
+```
+
+## Keeping some rows
+
+For keeping the rows that meet certain conditions, we use `filter()`.
+
+**Example:**
+```{r, warning=FALSE, message=FALSE}
+f_df <- filter(a_df, abs(y) > 0.5 & !is.na(z))
+(f_df)
+```
+
+## Arrange rows
+
+Some rows of the data frame will be put at the top and other rows will be put at the bottom; for this purpose, we use `arrange()`.
+
+**Example:**
+```{r, warning=FALSE, message=FALSE}
+g_df <- arrange(a_df, desc(z))
+(g_df)
+
+h_df <- arrange(a_df, desc(z), y)
+(h_df)
+```
+
+## Changing variables' names
+
+We use `rename()`.
+
+**Example:**
+```{r, warning=FALSE, message=FALSE}
+i_df <- rename(a_df, new_z = z)
+(i_df)
+```
+
+## Re-arranging variables' positions
+
+For outputting purpose, we may want to re-arrange variables' positions, and we can use `select_at()` or `setcolorder`
+
+**Example:**
+```{r, warning=FALSE, message=FALSE}
+new_var_oder <- c("z", "y", "x")
+j_df <- select_at(a_df, .var = new_var_oder)
+(j_df)
+```
 
 
-# Data.table {#dt}
+# Data.table way {#dt}
+
+The first line of R codes in this chapter should be
+
+`library(data.table)`
+
+What can be done with `dplyr` package (one component of `tidyverse` package; dplyr stands for "data frame apply r") can also be done using 'data.table' package, and vice versa. Lots of people like `data.talbe` package for many reasons, in particular fast speed of data.table codes. To me, if I need to deal with data set of one million or more rows, then I will switch from using `dplyr` to `data.table` package. 
+
+## `data.table`
+
+What is a data.table? The answer is: It is an **enhanced version of data frame**. The meaning of 
+"enhanced" is that it allows
+
+`DT[i, j, by]`
+
+that is, "take `DT`, subset/reorder rows using `i`, then calculate `j`, grouped by `by`" (see this and detailed explanations from https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html)
+
+## Creating a data.table
+
+We use `data.table()` to create a data.table. For converting from a data frame to a data.table, we use `SetDT` (especially for large data set) or `as.data.table`.
+ 
+ **Example:**
+```{r, warning=FALSE, message=FALSE}
+library(data.table)
+a_dt <- 
+  data.table(ID = letters[1:5],
+             x = 1:5,
+             y = month.name[1:5])
+(a_dt)
+```
+
+## Selecting columns
+
+The syntax is:
+
+`DT[, .(<sel_var1 => var1, <sel_var2 => var2)]`
+where `<...>` means optional;
+
+or
+
+`DT[, c("var1", "var2")]`
+
+or
+```{r, eval=FALSE}
+sel_cols <- c("var1", "var2")
+DT[, sel_cols, with = FALSE]
+```
+
+
+**Example:**
+```{r, warning=FALSE, message=FALSE}
+b_dt <- a_dt[, .(new_y = y, new_x = x)]
+(b_dt)
+
+vars_to_choose <- c("ID", "y")
+c_dt <- a_dt[, vars_to_choose, with = FALSE]
+(c_dt)
+```
+
+## Creating new column
+
+The syntax is
+
+```{r, eval=FALSE}
+new_DT -> copy(DT)
+new_DT[, `:=`(new_var = func(existed_vars))]
+```
+
+If we care about memory and are aware of all possible *side effects* on the original `DT`, we can do
+```{r, eval=FALSE}
+DT[, `:=`(new_var = func(existed_vars))]
+```
+About "side effects" of `:=`, see https://cran.r-project.org/web/packages/data.table/vignettes/datatable-reference-semantics.html
+
+
+**Example:**
+```{r, warning=FALSE, message=FALSE}
+(the_name <- names(a_dt))
+new_dt <- copy(a_dt)
+new_dt[, `:=`(u = x^2)]
+(new_dt)
+
+a_dt[, `:=`(u = x^2)]
+(a_dt)
+(the_name) # it's also updated!
+```
+
+## Keeping some rows
+
+The syntax is
+```{r, eval=FALSE}
+new_DT <- DT[var1 == sth & var2 > sth | vars != sth]
+```
+
+**Example:**
+```{r, warning=FALSE, message=FALSE}
+dt_new <- a_dt[x%%2 == 0 | u == 9]
+(dt_new)
+```
+
+
+## Arrange rows
+
+The syntax is
+```{r, eval=FALSE}
+DT[order(var1, -var2)]
+```
+
+**Example:**
+```{r, warning=FALSE, message=FALSE}
+d_dt <- a_dt[order(-ID)]
+(d_dt)
+```
+
+## Changing variables' names
+
+The syntax is
+```{r, eval=FALSE}
+setnames(DT, "old_name", "new_name")
+```
+
+**Example:**
+```{r, warning=FALSE, message=FALSE}
+setnames(a_dt, c("x", "y"), c("new_x", "new_y"))
+(a_dt)
+```
+
+## Re-arranging variables' positions
+
+The syntax is
+```{r, eval=FALSE}
+setcolorder(DT, neworder = new_order)
+```
+
+**Example:**
+```{r, warning=FALSE, message=FALSE}
+setcolorder(a_dt, neworder = c("ID", "u", "new_y", "new_x"))
+(a_dt)
+```
+
 
 
 # (PART\*) Part III: Data Exportation {-}
