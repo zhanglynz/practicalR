@@ -98,7 +98,7 @@ We can use functions `select()` and `select_at()`.
 ```{r, warning=FALSE, message=FALSE}
 b_df <- select(a_df, x, y)
 (b_df)
-(c(is.tibble(a_df), is.tibble(b_df), is.data.frame(b_df)))
+(c(is_tibble(a_df), is_tibble(b_df), is.data.frame(b_df)))
 
 c_df <- select_at(a_df, .var = c("z", "y"))
 (c_df)
@@ -164,6 +164,46 @@ j_df <- select_at(a_df, .var = new_var_oder)
 (j_df)
 ```
 
+## Making summary/aggregation
+
+We do some things like the following
+```{r, eval=FALSE}
+summ_df <- 
+  a_df %>% 
+  group_by(grp_var1, grp_var2) %>% 
+  summarise(grp_total_of_v = sum(v), .groups = "drop")
+```
+and
+```{r, eval=FALSE}
+summ_df <- 
+  a_df %>% 
+  group_by(grp_var1, grp_var2) %>% 
+  summarise(grp_count = n(), .groups = "drop")
+```
+
+**Example 1:** Making summary of one variable
+```{r, warning=FALSE, message=FALSE}
+fake_data <- 
+  data.frame(type = rep(letters[1:3], each = 3),
+             x = 1:9,
+             y = rnorm(9),
+             z = runif(9))
+
+a_summ <- 
+  fake_data %>% 
+  group_by(type) %>% 
+  summarise(grouped_mean_of_x = mean(x), .groups = "drop")
+(a_summ)
+```
+
+**Example 2:** Making summary of many variables
+```{r, warning=FALSE, message=FALSE}
+b_summ <- 
+  fake_data %>% 
+  group_by(type) %>% 
+  summarise(across(c(x, y, z), mean, .names = "grouped_mean_of_{.col}"), .groups = "drop")
+(b_summ)
+```
 
 # Data.table way {#dt}
 
@@ -303,6 +343,43 @@ setcolorder(DT, neworder = new_order)
 ```{r, warning=FALSE, message=FALSE}
 setcolorder(a_dt, neworder = c("ID", "u", "new_y", "new_x"))
 (a_dt)
+```
+
+## Making summary/aggregation
+
+The syntax: 
+```{r, eval=FALSE}
+summ_dt <- DT[, .(grp_total_of_v = sum(v)), by = .(grp_var1, grp_var2)]  
+```
+and for counting
+```{r, eval=FALSE}
+summ_dt <- DT[, .(grp_count = .N), by = .(grp_var1, grp_var2)] 
+```
+and for summarizing many variables
+```{r, eval=FALSE}
+summ_dt <- DT[, lapply(.DT, mean), by = .(grp_var1, grp_var2), .SDcols = c("var1", "var2")]
+```
+
+**Example 1:** Making summary of one variable
+```{r, warning=FALSE, message=FALSE}
+fake_dt <- 
+  data.table(type = rep(letters[1:3], each = 3),
+             x = 1:9,
+             y = rnorm(9),
+             z = runif(9))
+
+a_summ_dt <- fake_dt[, .(grouped_mean_of_x = mean(x)), by = type]
+(a_summ_dt)
+
+b_summ_dt <- fake_dt[, .(grouped_count = .N), by = type]
+(b_summ_dt)
+```
+
+**Example 2:** Making summary of many variables
+```{r, warning=FALSE, message=FALSE}
+c_summ_dt <- fake_dt[, lapply(.SD, mean), by = type,
+                     .SDcols = c('x', 'z')]
+(c_summ_dt)
 ```
 
 

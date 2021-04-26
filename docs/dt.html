@@ -25,7 +25,7 @@
 <meta name="author" content="Lingyun Zhang">
 
 
-<meta name="date" content="2021-04-25">
+<meta name="date" content="2021-04-26">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -111,6 +111,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.6" data-path="ti.html"><a href="ti.html#arrange-rows"><i class="fa fa-check"></i><b>1.6</b> Arrange rows</a></li>
 <li class="chapter" data-level="1.7" data-path="ti.html"><a href="ti.html#changing-variables-names"><i class="fa fa-check"></i><b>1.7</b> Changing variables’ names</a></li>
 <li class="chapter" data-level="1.8" data-path="ti.html"><a href="ti.html#re-arranging-variables-positions"><i class="fa fa-check"></i><b>1.8</b> Re-arranging variables’ positions</a></li>
+<li class="chapter" data-level="1.9" data-path="ti.html"><a href="ti.html#making-summaryaggregation"><i class="fa fa-check"></i><b>1.9</b> Making summary/aggregation</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="dt.html"><a href="dt.html"><i class="fa fa-check"></i><b>2</b> Data.table way</a><ul>
 <li class="chapter" data-level="2.1" data-path="dt.html"><a href="dt.html#data.table"><i class="fa fa-check"></i><b>2.1</b> <code>data.table</code></a></li>
@@ -121,6 +122,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.6" data-path="dt.html"><a href="dt.html#arrange-rows-1"><i class="fa fa-check"></i><b>2.6</b> Arrange rows</a></li>
 <li class="chapter" data-level="2.7" data-path="dt.html"><a href="dt.html#changing-variables-names-1"><i class="fa fa-check"></i><b>2.7</b> Changing variables’ names</a></li>
 <li class="chapter" data-level="2.8" data-path="dt.html"><a href="dt.html#re-arranging-variables-positions-1"><i class="fa fa-check"></i><b>2.8</b> Re-arranging variables’ positions</a></li>
+<li class="chapter" data-level="2.9" data-path="dt.html"><a href="dt.html#making-summaryaggregation-1"><i class="fa fa-check"></i><b>2.9</b> Making summary/aggregation</a></li>
 </ul></li>
 <li class="part"><span><b>Part III: Data Exportation</b></span></li>
 <li class="part"><span><b>Part IV: Data Visualization</b></span></li>
@@ -296,6 +298,42 @@ new_dt[, <span class="st">`</span><span class="dt">:=</span><span class="st">`</
 ## 3:  c  9    March     3
 ## 4:  d 16    April     4
 ## 5:  e 25      May     5</code></pre>
+</div>
+<div id="making-summaryaggregation-1" class="section level2">
+<h2><span class="header-section-number">2.9</span> Making summary/aggregation</h2>
+<p>The syntax:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">summ_dt &lt;-<span class="st"> </span>DT[, .(<span class="dt">grp_total_of_v =</span> <span class="kw">sum</span>(v)), by =<span class="st"> </span>.(grp_var1, grp_var2)]  </code></pre></div>
+<p>and for counting</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">summ_dt &lt;-<span class="st"> </span>DT[, .(<span class="dt">grp_count =</span> .N), by =<span class="st"> </span>.(grp_var1, grp_var2)] </code></pre></div>
+<p>and for summarizing many variables</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">summ_dt &lt;-<span class="st"> </span>DT[, <span class="kw">lapply</span>(.DT, mean), by =<span class="st"> </span>.(grp_var1, grp_var2), .SDcols =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;var1&quot;</span>, <span class="st">&quot;var2&quot;</span>)]</code></pre></div>
+<p><strong>Example 1:</strong> Making summary of one variable</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fake_dt &lt;-<span class="st"> </span>
+<span class="st">  </span><span class="kw">data.table</span>(<span class="dt">type =</span> <span class="kw">rep</span>(letters[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>], <span class="dt">each =</span> <span class="dv">3</span>),
+             <span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">9</span>,
+             <span class="dt">y =</span> <span class="kw">rnorm</span>(<span class="dv">9</span>),
+             <span class="dt">z =</span> <span class="kw">runif</span>(<span class="dv">9</span>))
+
+a_summ_dt &lt;-<span class="st"> </span>fake_dt[, .(<span class="dt">grouped_mean_of_x =</span> <span class="kw">mean</span>(x)), by =<span class="st"> </span>type]
+(a_summ_dt)</code></pre></div>
+<pre><code>##    type grouped_mean_of_x
+## 1:    a                 2
+## 2:    b                 5
+## 3:    c                 8</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">b_summ_dt &lt;-<span class="st"> </span>fake_dt[, .(<span class="dt">grouped_count =</span> .N), by =<span class="st"> </span>type]
+(b_summ_dt)</code></pre></div>
+<pre><code>##    type grouped_count
+## 1:    a             3
+## 2:    b             3
+## 3:    c             3</code></pre>
+<p><strong>Example 2:</strong> Making summary of many variables</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">c_summ_dt &lt;-<span class="st"> </span>fake_dt[, <span class="kw">lapply</span>(.SD, mean), by =<span class="st"> </span>type,
+                     .SDcols =<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;x&#39;</span>, <span class="st">&#39;z&#39;</span>)]
+(c_summ_dt)</code></pre></div>
+<pre><code>##    type x         z
+## 1:    a 2 0.5162124
+## 2:    b 5 0.5131182
+## 3:    c 8 0.5851691</code></pre>
 </div>
 </div>
 
