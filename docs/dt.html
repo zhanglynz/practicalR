@@ -25,7 +25,7 @@
 <meta name="author" content="Lingyun Zhang">
 
 
-<meta name="date" content="2021-04-26">
+<meta name="date" content="2021-05-08">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -162,7 +162,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1><span class="header-section-number">2</span> Data.table way</h1>
 <p>The first line of R codes in this chapter should be</p>
 <p><code>library(data.table)</code></p>
-<p>What can be done with <code>dplyr</code> package (one component of <code>tidyverse</code> package; dplyr stands for “data frame apply r”) can also be done using ‘data.table’ package, and vice versa. Lots of people like <code>data.talbe</code> package for many reasons, in particular fast speed of data.table codes. To me, if I need to deal with data set of one million or more rows, then I will switch from using <code>dplyr</code> to <code>data.table</code> package.</p>
+<p>What can be done with <code>dplyr</code> package (one component of <code>tidyverse</code> package; dplyr stands for “data frame apply r”) can also be done using <code>data.table</code> package, and vice versa. Lots of people like <code>data.talbe</code> package for many reasons, in particular fast speed of data.table codes. To me, if I need to deal with data set of one million or more rows, then I will switch from using <code>dplyr</code> to <code>data.table</code> package.</p>
 <div id="data.table" class="section level2">
 <h2><span class="header-section-number">2.1</span> <code>data.table</code></h2>
 <p>What is a data.table? The answer is: It is an <strong>enhanced version of data frame</strong>. The meaning of “enhanced” is that it allows</p>
@@ -331,9 +331,9 @@ a_summ_dt &lt;-<span class="st"> </span>fake_dt[, .(<span class="dt">grouped_mea
                      .SDcols =<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;x&#39;</span>, <span class="st">&#39;z&#39;</span>)]
 (c_summ_dt)</code></pre></div>
 <pre><code>##    type x         z
-## 1:    a 2 0.5162124
-## 2:    b 5 0.5131182
-## 3:    c 8 0.5851691</code></pre>
+## 1:    a 2 0.3979880
+## 2:    b 5 0.3574641
+## 3:    c 8 0.4350098</code></pre>
 </div>
 </div>
 

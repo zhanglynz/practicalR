@@ -155,7 +155,7 @@ i_df <- rename(a_df, new_z = z)
 
 ## Re-arranging variables' positions
 
-For outputting purpose, we may want to re-arrange variables' positions, and we can use `select_at()` or `setcolorder`
+For outputting purpose, we may want to re-arrange variables' positions, and we can use `select_at()`. 
 
 **Example:**
 ```{r, warning=FALSE, message=FALSE}
@@ -211,7 +211,7 @@ The first line of R codes in this chapter should be
 
 `library(data.table)`
 
-What can be done with `dplyr` package (one component of `tidyverse` package; dplyr stands for "data frame apply r") can also be done using 'data.table' package, and vice versa. Lots of people like `data.talbe` package for many reasons, in particular fast speed of data.table codes. To me, if I need to deal with data set of one million or more rows, then I will switch from using `dplyr` to `data.table` package. 
+What can be done with `dplyr` package (one component of `tidyverse` package; dplyr stands for "data frame apply r") can also be done using `data.table` package, and vice versa. Lots of people like `data.talbe` package for many reasons, in particular fast speed of data.table codes. To me, if I need to deal with data set of one million or more rows, then I will switch from using `dplyr` to `data.table` package. 
 
 ## `data.table`
 
