@@ -155,13 +155,15 @@ i_df <- rename(a_df, new_z = z)
 
 ## Re-arranging variables' positions
 
-For outputting purpose, we may want to re-arrange variables' positions, and we can use `select_at()`. 
+For outputting purpose, we may want to re-arrange variables' positions, and we can use `select(df, all_of(a_ch_vec))` or `select_at(df, .var = a_ch_vec)`. 
 
 **Example:**
 ```{r, warning=FALSE, message=FALSE}
 new_var_oder <- c("z", "y", "x")
-j_df <- select_at(a_df, .var = new_var_oder)
+j_df <- select(a_df, all_of(new_var_oder))
 (j_df)
+j_df_a <- select_at(a_df, .var = new_var_oder)
+(j_df_a)
 ```
 
 ## Making summary/aggregation

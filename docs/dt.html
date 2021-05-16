@@ -25,7 +25,7 @@
 <meta name="author" content="Lingyun Zhang">
 
 
-<meta name="date" content="2021-05-09">
+<meta name="date" content="2021-05-16">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -331,10 +331,10 @@ a_summ_dt &lt;-<span class="st"> </span>fake_dt[, .(<span class="dt">grouped_mea
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">c_summ_dt &lt;-<span class="st"> </span>fake_dt[, <span class="kw">lapply</span>(.SD, mean), by =<span class="st"> </span>type,
                      .SDcols =<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;x&#39;</span>, <span class="st">&#39;z&#39;</span>)]
 (c_summ_dt)</code></pre></div>
-<pre><code>##    type x          z
-## 1:    a 2 0.06315046
-## 2:    b 5 0.72297813
-## 3:    c 8 0.54956238</code></pre>
+<pre><code>##    type x         z
+## 1:    a 2 0.6136276
+## 2:    b 5 0.5715458
+## 3:    c 8 0.4098556</code></pre>
 </div>
 </div>
 

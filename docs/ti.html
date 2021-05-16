@@ -25,7 +25,7 @@
 <meta name="author" content="Lingyun Zhang">
 
 
-<meta name="date" content="2021-05-09">
+<meta name="date" content="2021-05-16">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -192,12 +192,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
              <span class="dt">z =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="st">&#39;a&#39;</span>, <span class="ot">NA</span>, <span class="st">&#39;b&#39;</span>, <span class="st">&#39;c&#39;</span>),
              <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
 (a_df)</code></pre></div>
-<pre><code>##    x           y    z
-## 1  1  0.53456644 &lt;NA&gt;
-## 2  2  1.29567951    a
-## 3  3  0.51534318 &lt;NA&gt;
-## 4 NA  0.05071983    b
-## 5 NA -0.88143709    c</code></pre>
+<pre><code>##    x          y    z
+## 1  1  0.0870247 &lt;NA&gt;
+## 2  2 -0.2303102    a
+## 3  3  0.2825405 &lt;NA&gt;
+## 4 NA -0.1549567    b
+## 5 NA -0.6989838    c</code></pre>
 <p><strong>Example 2:</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
 a_tibble &lt;-<span class="st"> </span>
@@ -208,11 +208,11 @@ a_tibble &lt;-<span class="st"> </span>
 <pre><code>## # A tibble: 5 x 3
 ##       x      y z    
 ##   &lt;int&gt;  &lt;dbl&gt; &lt;chr&gt;
-## 1     1 -0.574 &lt;NA&gt; 
-## 2     2 -0.675 a    
-## 3     3 -0.415 &lt;NA&gt; 
-## 4    NA  1.07  b    
-## 5    NA  0.389 c</code></pre>
+## 1     1 -0.340 &lt;NA&gt; 
+## 2     2 -0.961 a    
+## 3     3 -0.393 &lt;NA&gt; 
+## 4    NA  1.78  b    
+## 5    NA  0.624 c</code></pre>
 <p><strong>Example 3:</strong> tibble is more “strict”</p>
 <p>We can run the following code if we want but it silently changes the type of variable <code>x</code> from integer to character.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a_df[<span class="kw">is.na</span>(a_df)] &lt;-<span class="st"> &quot;&quot;</span></code></pre></div>
@@ -229,31 +229,31 @@ a_tibble &lt;-<span class="st"> </span>
 <p><strong>Example 1:</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">b_df &lt;-<span class="st"> </span><span class="kw">select</span>(a_df, x, y)
 (b_df)</code></pre></div>
-<pre><code>##    x           y
-## 1  1  0.53456644
-## 2  2  1.29567951
-## 3  3  0.51534318
-## 4 NA  0.05071983
-## 5 NA -0.88143709</code></pre>
+<pre><code>##    x          y
+## 1  1  0.0870247
+## 2  2 -0.2303102
+## 3  3  0.2825405
+## 4 NA -0.1549567
+## 5 NA -0.6989838</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(<span class="kw">c</span>(<span class="kw">is_tibble</span>(a_df), <span class="kw">is_tibble</span>(b_df), <span class="kw">is.data.frame</span>(b_df)))</code></pre></div>
 <pre><code>## [1] FALSE FALSE  TRUE</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">c_df &lt;-<span class="st"> </span><span class="kw">select_at</span>(a_df, <span class="dt">.var =</span> <span class="kw">c</span>(<span class="st">&quot;z&quot;</span>, <span class="st">&quot;y&quot;</span>))
 (c_df)</code></pre></div>
-<pre><code>##      z           y
-## 1 &lt;NA&gt;  0.53456644
-## 2    a  1.29567951
-## 3 &lt;NA&gt;  0.51534318
-## 4    b  0.05071983
-## 5    c -0.88143709</code></pre>
+<pre><code>##      z          y
+## 1 &lt;NA&gt;  0.0870247
+## 2    a -0.2303102
+## 3 &lt;NA&gt;  0.2825405
+## 4    b -0.1549567
+## 5    c -0.6989838</code></pre>
 <p><strong>Example 2:</strong> Selecting plus renaming</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">d_df &lt;-<span class="st"> </span><span class="kw">select</span>(a_df, <span class="dt">new_x =</span> x, <span class="dt">new_y =</span> y)
 (d_df)</code></pre></div>
-<pre><code>##   new_x       new_y
-## 1     1  0.53456644
-## 2     2  1.29567951
-## 3     3  0.51534318
-## 4    NA  0.05071983
-## 5    NA -0.88143709</code></pre>
+<pre><code>##   new_x      new_y
+## 1     1  0.0870247
+## 2     2 -0.2303102
+## 3     3  0.2825405
+## 4    NA -0.1549567
+## 5    NA -0.6989838</code></pre>
 </div>
 <div id="creating-new-column" class="section level2">
 <h2><span class="header-section-number">1.4</span> Creating new column</h2>
@@ -261,12 +261,12 @@ a_tibble &lt;-<span class="st"> </span>
 <p><strong>Example 1:</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">e_df &lt;-<span class="st"> </span><span class="kw">mutate</span>(a_df, <span class="dt">u =</span> y<span class="op">^</span><span class="dv">2</span>, <span class="dt">v =</span> <span class="kw">is.na</span>(z))
 (e_df)</code></pre></div>
-<pre><code>##    x           y    z           u     v
-## 1  1  0.53456644 &lt;NA&gt; 0.285761278  TRUE
-## 2  2  1.29567951    a 1.678785387 FALSE
-## 3  3  0.51534318 &lt;NA&gt; 0.265578596  TRUE
-## 4 NA  0.05071983    b 0.002572502 FALSE
-## 5 NA -0.88143709    c 0.776931342 FALSE</code></pre>
+<pre><code>##    x          y    z           u     v
+## 1  1  0.0870247 &lt;NA&gt; 0.007573299  TRUE
+## 2  2 -0.2303102    a 0.053042777 FALSE
+## 3  3  0.2825405 &lt;NA&gt; 0.079829111  TRUE
+## 4 NA -0.1549567    b 0.024011574 FALSE
+## 5 NA -0.6989838    c 0.488578404 FALSE</code></pre>
 </div>
 <div id="keeping-some-rows" class="section level2">
 <h2><span class="header-section-number">1.5</span> Keeping some rows</h2>
@@ -275,8 +275,7 @@ a_tibble &lt;-<span class="st"> </span>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f_df &lt;-<span class="st"> </span><span class="kw">filter</span>(a_df, <span class="kw">abs</span>(y) <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.5</span> <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(z))
 (f_df)</code></pre></div>
 <pre><code>##    x          y z
-## 1  2  1.2956795 a
-## 2 NA -0.8814371 c</code></pre>
+## 1 NA -0.6989838 c</code></pre>
 </div>
 <div id="arrange-rows" class="section level2">
 <h2><span class="header-section-number">1.6</span> Arrange rows</h2>
@@ -284,20 +283,20 @@ a_tibble &lt;-<span class="st"> </span>
 <p><strong>Example:</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">g_df &lt;-<span class="st"> </span><span class="kw">arrange</span>(a_df, <span class="kw">desc</span>(z))
 (g_df)</code></pre></div>
-<pre><code>##    x           y    z
-## 1 NA -0.88143709    c
-## 2 NA  0.05071983    b
-## 3  2  1.29567951    a
-## 4  1  0.53456644 &lt;NA&gt;
-## 5  3  0.51534318 &lt;NA&gt;</code></pre>
+<pre><code>##    x          y    z
+## 1 NA -0.6989838    c
+## 2 NA -0.1549567    b
+## 3  2 -0.2303102    a
+## 4  1  0.0870247 &lt;NA&gt;
+## 5  3  0.2825405 &lt;NA&gt;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">h_df &lt;-<span class="st"> </span><span class="kw">arrange</span>(a_df, <span class="kw">desc</span>(z), y)
 (h_df)</code></pre></div>
-<pre><code>##    x           y    z
-## 1 NA -0.88143709    c
-## 2 NA  0.05071983    b
-## 3  2  1.29567951    a
-## 4  3  0.51534318 &lt;NA&gt;
-## 5  1  0.53456644 &lt;NA&gt;</code></pre>
+<pre><code>##    x          y    z
+## 1 NA -0.6989838    c
+## 2 NA -0.1549567    b
+## 3  2 -0.2303102    a
+## 4  1  0.0870247 &lt;NA&gt;
+## 5  3  0.2825405 &lt;NA&gt;</code></pre>
 </div>
 <div id="changing-variables-names" class="section level2">
 <h2><span class="header-section-number">1.7</span> Changing variables’ names</h2>
@@ -305,26 +304,34 @@ a_tibble &lt;-<span class="st"> </span>
 <p><strong>Example:</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">i_df &lt;-<span class="st"> </span><span class="kw">rename</span>(a_df, <span class="dt">new_z =</span> z)
 (i_df)</code></pre></div>
-<pre><code>##    x           y new_z
-## 1  1  0.53456644  &lt;NA&gt;
-## 2  2  1.29567951     a
-## 3  3  0.51534318  &lt;NA&gt;
-## 4 NA  0.05071983     b
-## 5 NA -0.88143709     c</code></pre>
+<pre><code>##    x          y new_z
+## 1  1  0.0870247  &lt;NA&gt;
+## 2  2 -0.2303102     a
+## 3  3  0.2825405  &lt;NA&gt;
+## 4 NA -0.1549567     b
+## 5 NA -0.6989838     c</code></pre>
 </div>
 <div id="re-arranging-variables-positions" class="section level2">
 <h2><span class="header-section-number">1.8</span> Re-arranging variables’ positions</h2>
-<p>For outputting purpose, we may want to re-arrange variables’ positions, and we can use <code>select_at()</code>.</p>
+<p>For outputting purpose, we may want to re-arrange variables’ positions, and we can use <code>select(df, all_of(a_ch_vec))</code> or <code>select_at(df, .var = a_ch_vec)</code>.</p>
 <p><strong>Example:</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">new_var_oder &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;z&quot;</span>, <span class="st">&quot;y&quot;</span>, <span class="st">&quot;x&quot;</span>)
-j_df &lt;-<span class="st"> </span><span class="kw">select_at</span>(a_df, <span class="dt">.var =</span> new_var_oder)
+j_df &lt;-<span class="st"> </span><span class="kw">select</span>(a_df, <span class="kw">all_of</span>(new_var_oder))
 (j_df)</code></pre></div>
-<pre><code>##      z           y  x
-## 1 &lt;NA&gt;  0.53456644  1
-## 2    a  1.29567951  2
-## 3 &lt;NA&gt;  0.51534318  3
-## 4    b  0.05071983 NA
-## 5    c -0.88143709 NA</code></pre>
+<pre><code>##      z          y  x
+## 1 &lt;NA&gt;  0.0870247  1
+## 2    a -0.2303102  2
+## 3 &lt;NA&gt;  0.2825405  3
+## 4    b -0.1549567 NA
+## 5    c -0.6989838 NA</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">j_df_a &lt;-<span class="st"> </span><span class="kw">select_at</span>(a_df, <span class="dt">.var =</span> new_var_oder)
+(j_df_a)</code></pre></div>
+<pre><code>##      z          y  x
+## 1 &lt;NA&gt;  0.0870247  1
+## 2    a -0.2303102  2
+## 3 &lt;NA&gt;  0.2825405  3
+## 4    b -0.1549567 NA
+## 5    c -0.6989838 NA</code></pre>
 </div>
 <div id="making-summaryaggregation" class="section level2">
 <h2><span class="header-section-number">1.9</span> Making summary/aggregation</h2>
@@ -365,9 +372,9 @@ a_summ &lt;-<span class="st"> </span>
 <pre><code>## # A tibble: 3 x 4
 ##   type  grouped_mean_of_x grouped_mean_of_y grouped_mean_of_z
 ##   &lt;fct&gt;             &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt;
-## 1 a                     2            -0.167             0.359
-## 2 b                     5            -0.486             0.318
-## 3 c                     8             1.04              0.581</code></pre>
+## 1 a                     2           -0.252              0.568
+## 2 b                     5            0.0807             0.511
+## 3 c                     8           -1.40               0.359</code></pre>
 </div>
 <div id="on-group_by" class="section level2">
 <h2><span class="header-section-number">1.10</span> On <code>group_by()</code></h2>
@@ -387,15 +394,15 @@ a_summ &lt;-<span class="st"> </span>
              <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
 (my_df)</code></pre></div>
 <pre><code>##   g         x y
-## 1 a 0.9838048 A
-## 2 a 0.5141944 B
-## 3 a 0.9504635 C
-## 4 b 0.1442238 D
-## 5 b 0.9212988 E
-## 6 b 0.6288727 F
-## 7 c 0.1290331 G
-## 8 c 0.8602771 H
-## 9 c 0.9637892 I</code></pre>
+## 1 a 0.1715788 A
+## 2 a 0.1956932 B
+## 3 a 0.7426073 C
+## 4 b 0.3109779 D
+## 5 b 0.3292085 E
+## 6 b 0.2235137 F
+## 7 c 0.6633738 G
+## 8 c 0.1984398 H
+## 9 c 0.9968273 I</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_df_a &lt;-<span class="st"> </span>
 <span class="st">  </span>my_df <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(g) <span class="op">%&gt;%</span><span class="st"> </span>
@@ -405,15 +412,15 @@ a_summ &lt;-<span class="st"> </span>
 <pre><code>## # A tibble: 9 x 4
 ##   g         x y     ID_in_grp
 ##   &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;int&gt;
-## 1 a     0.984 A             1
-## 2 a     0.514 B             2
-## 3 a     0.950 C             3
-## 4 b     0.144 D             1
-## 5 b     0.921 E             2
-## 6 b     0.629 F             3
-## 7 c     0.129 G             1
-## 8 c     0.860 H             2
-## 9 c     0.964 I             3</code></pre>
+## 1 a     0.172 A             1
+## 2 a     0.196 B             2
+## 3 a     0.743 C             3
+## 4 b     0.311 D             1
+## 5 b     0.329 E             2
+## 6 b     0.224 F             3
+## 7 c     0.663 G             1
+## 8 c     0.198 H             2
+## 9 c     0.997 I             3</code></pre>
 <p><strong>Example 2:</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_df_b &lt;-<span class="st"> </span>
 <span class="st">  </span>my_df_a <span class="op">%&gt;%</span><span class="st"> </span>
@@ -424,9 +431,9 @@ a_summ &lt;-<span class="st"> </span>
 <pre><code>## # A tibble: 3 x 4
 ##   g         x y     ID_in_grp
 ##   &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;int&gt;
-## 1 a     0.984 A             1
-## 2 b     0.921 E             2
-## 3 c     0.964 I             3</code></pre>
+## 1 a     0.172 A             1
+## 2 b     0.329 E             2
+## 3 c     0.997 I             3</code></pre>
 <p><strong>Example 3:</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_df_c &lt;-<span class="st"> </span>
 <span class="st">  </span>my_df <span class="op">%&gt;%</span><span class="st"> </span>
@@ -437,15 +444,15 @@ a_summ &lt;-<span class="st"> </span>
 ## # Groups:   g [3]
 ##   g         x y    
 ##   &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;
-## 1 a     0.514 B    
-## 2 a     0.950 C    
-## 3 a     0.984 A    
-## 4 b     0.144 D    
-## 5 b     0.629 F    
-## 6 b     0.921 E    
-## 7 c     0.129 G    
-## 8 c     0.860 H    
-## 9 c     0.964 I</code></pre>
+## 1 a     0.172 A    
+## 2 a     0.196 B    
+## 3 a     0.743 C    
+## 4 b     0.224 F    
+## 5 b     0.311 D    
+## 6 b     0.329 E    
+## 7 c     0.198 H    
+## 8 c     0.663 G    
+## 9 c     0.997 I</code></pre>
 </div>
 </div>
             </section>
