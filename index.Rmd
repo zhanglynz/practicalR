@@ -40,7 +40,7 @@ In this chapter (Chapter \@ref(ti)) and the next one, we deal with **data frames
 - how to convert a *wide* table to a *long* table;
 
 
-The difference between Chapter \@ref(ti) and Chapter \@ref(dt) is that for the same task we use different tools (to be exact **functions**)---in this chapter we use functions that come from `tidyverse` package, whereas in the next chapter we use functions that mainly belong to `data.table` package.
+The difference between Chapter \@ref(ti) and Chapter \@ref(dt) is that for the same task we use different tools (to be exact **functions**)---in this chapter we use functions that come from `tidyverse` package (to be exact, it's a collection of R packages, including `readr`, `tibble`, `dplyr`, `tidyr`, `ggplot2`, `purrr`, `stringr` and `forcats` as components), whereas in the next chapter we use functions that mainly belong to `data.table` package.
 
 The first line of R codes in this chapter should be
 
@@ -444,17 +444,50 @@ c_summ_dt <- fake_dt[, lapply(.SD, mean), by = type,
 
 
 
-# (PART\*) Part V: Repeated Work {-}
+# (PART\*) Part V: Repeating Work {-}
 
 # Writing functions
 
-# `for` loops
+# apply family functions
+
+For *iterations* (repeating work), base R provides apply family functions. In my opinion, the mostly useful ones are `apply()` (taking a matrix as input), `lapply()` (taking a list as input) and `sapply()` (taking a list as input, but may be handier in some situations). 
+
+**Example 1:** Using `apply()`
+```{r}
+a_matrix <- matrix(1:9, ncol = 3, byrow = TRUE)
+row_sums <- apply(a_matrix, 1, sum)
+col_sums <- apply(a_matrix, 2, sum)
+(list("row_sums" = row_sums, "col_sums" = col_sums))
+```
+
+**Example 2:** Using `lapply()`: bootstrap confidence interval
+```{r}
+set.seed(31415)
+a_sample <- rnorm(10)
+my_sampling <- function()
+{b_sample <- sample(a_sample, size = 10, replace = TRUE)
+ mean(b_sample)
+}
+bootstrap_mean <- 
+  unlist(lapply(1:1000, 
+                FUN = function(i) my_sampling()))
+# or
+# bootstrap_mean <-
+#   sapply(1:1000,
+#          FUN = function(i) my_sampling())
+lower_and_upper_limits <- 
+  quantile(bootstrap_mean, probs = c(0.025, 0.975))
+lower_and_upper_limits
+```
+
+
 
 # `purrr` package
 
-# apply family functions
-
 # multiple core apply
+
+# `for` loops
+
 
 # (PART\*) Part VI: Other Packages {-}
 

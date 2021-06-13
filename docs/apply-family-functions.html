@@ -25,15 +25,15 @@
 <meta name="author" content="Lingyun Zhang">
 
 
-<meta name="date" content="2021-05-16">
+<meta name="date" content="2021-06-13">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="purrr-package.html">
-<link rel="next" href="multiple-core-apply.html">
+<link rel="prev" href="writing-functions.html">
+<link rel="next" href="purrr-package.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -129,12 +129,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="part"><span><b>Part IV: Data Visualization</b></span></li>
 <li class="chapter" data-level="3" data-path="base-r.html"><a href="base-r.html"><i class="fa fa-check"></i><b>3</b> Base R</a></li>
 <li class="chapter" data-level="4" data-path="ggplot-gridexta-patchwork.html"><a href="ggplot-gridexta-patchwork.html"><i class="fa fa-check"></i><b>4</b> <code>ggplot</code> + <code>gridExta</code> + <code>patchwork</code></a></li>
-<li class="part"><span><b>Part V: Repeated Work</b></span></li>
+<li class="part"><span><b>Part V: Repeating Work</b></span></li>
 <li class="chapter" data-level="5" data-path="writing-functions.html"><a href="writing-functions.html"><i class="fa fa-check"></i><b>5</b> Writing functions</a></li>
-<li class="chapter" data-level="6" data-path="for-loops.html"><a href="for-loops.html"><i class="fa fa-check"></i><b>6</b> <code>for</code> loops</a></li>
+<li class="chapter" data-level="6" data-path="apply-family-functions.html"><a href="apply-family-functions.html"><i class="fa fa-check"></i><b>6</b> apply family functions</a></li>
 <li class="chapter" data-level="7" data-path="purrr-package.html"><a href="purrr-package.html"><i class="fa fa-check"></i><b>7</b> <code>purrr</code> package</a></li>
-<li class="chapter" data-level="8" data-path="apply-family-functions.html"><a href="apply-family-functions.html"><i class="fa fa-check"></i><b>8</b> apply family functions</a></li>
-<li class="chapter" data-level="9" data-path="multiple-core-apply.html"><a href="multiple-core-apply.html"><i class="fa fa-check"></i><b>9</b> multiple core apply</a></li>
+<li class="chapter" data-level="8" data-path="multiple-core-apply.html"><a href="multiple-core-apply.html"><i class="fa fa-check"></i><b>8</b> multiple core apply</a></li>
+<li class="chapter" data-level="9" data-path="for-loops.html"><a href="for-loops.html"><i class="fa fa-check"></i><b>9</b> <code>for</code> loops</a></li>
 <li class="part"><span><b>Part VI: Other Packages</b></span></li>
 <li class="chapter" data-level="10" data-path="stringr-package.html"><a href="stringr-package.html"><i class="fa fa-check"></i><b>10</b> <code>stringr</code> package</a></li>
 <li class="chapter" data-level="11" data-path="lubridate-package.html"><a href="lubridate-package.html"><i class="fa fa-check"></i><b>11</b> <code>lubridate</code> package</a></li>
@@ -160,15 +160,45 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="apply-family-functions" class="section level1">
-<h1><span class="header-section-number">8</span> apply family functions</h1>
+<h1><span class="header-section-number">6</span> apply family functions</h1>
+<p>For <em>iterations</em> (repeating work), base R provides apply family functions. In my opinion, the mostly useful ones are <code>apply()</code> (taking a matrix as input), <code>lapply()</code> (taking a list as input) and <code>sapply()</code> (taking a list as input, but may be handier in some situations).</p>
+<p><strong>Example 1:</strong> Using <code>apply()</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a_matrix &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)
+row_sums &lt;-<span class="st"> </span><span class="kw">apply</span>(a_matrix, <span class="dv">1</span>, sum)
+col_sums &lt;-<span class="st"> </span><span class="kw">apply</span>(a_matrix, <span class="dv">2</span>, sum)
+(<span class="kw">list</span>(<span class="st">&quot;row_sums&quot;</span> =<span class="st"> </span>row_sums, <span class="st">&quot;col_sums&quot;</span> =<span class="st"> </span>col_sums))</code></pre></div>
+<pre><code>## $row_sums
+## [1]  6 15 24
+## 
+## $col_sums
+## [1] 12 15 18</code></pre>
+<p><strong>Example 2:</strong> Using <code>lapply()</code>: bootstrap confidence interval</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">31415</span>)
+a_sample &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>)
+my_sampling &lt;-<span class="st"> </span><span class="cf">function</span>()
+{b_sample &lt;-<span class="st"> </span><span class="kw">sample</span>(a_sample, <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)
+ <span class="kw">mean</span>(b_sample)
+}
+bootstrap_mean &lt;-<span class="st"> </span>
+<span class="st">  </span><span class="kw">unlist</span>(<span class="kw">lapply</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>, 
+                <span class="dt">FUN =</span> <span class="cf">function</span>(i) <span class="kw">my_sampling</span>()))
+<span class="co"># or</span>
+<span class="co"># bootstrap_mean &lt;-</span>
+<span class="co">#   sapply(1:1000,</span>
+<span class="co">#          FUN = function(i) my_sampling())</span>
+lower_and_upper_limits &lt;-<span class="st"> </span>
+<span class="st">  </span><span class="kw">quantile</span>(bootstrap_mean, <span class="dt">probs =</span> <span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))
+lower_and_upper_limits</code></pre></div>
+<pre><code>##       2.5%      97.5% 
+## -0.6901385  0.8049399</code></pre>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="purrr-package.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="multiple-core-apply.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="writing-functions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="purrr-package.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
