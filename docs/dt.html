@@ -25,7 +25,7 @@
 <meta name="author" content="Lingyun Zhang">
 
 
-<meta name="date" content="2021-06-13">
+<meta name="date" content="2021-10-25">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -113,6 +113,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.8" data-path="ti.html"><a href="ti.html#re-arranging-variables-positions"><i class="fa fa-check"></i><b>1.8</b> Re-arranging variables’ positions</a></li>
 <li class="chapter" data-level="1.9" data-path="ti.html"><a href="ti.html#making-summaryaggregation"><i class="fa fa-check"></i><b>1.9</b> Making summary/aggregation</a></li>
 <li class="chapter" data-level="1.10" data-path="ti.html"><a href="ti.html#on-group_by"><i class="fa fa-check"></i><b>1.10</b> On <code>group_by()</code></a></li>
+<li class="chapter" data-level="1.11" data-path="ti.html"><a href="ti.html#convert-long-to-wide-table"><i class="fa fa-check"></i><b>1.11</b> Convert long to wide table</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="dt.html"><a href="dt.html"><i class="fa fa-check"></i><b>2</b> Data.table way</a><ul>
 <li class="chapter" data-level="2.1" data-path="dt.html"><a href="dt.html#data.table"><i class="fa fa-check"></i><b>2.1</b> <code>data.table</code></a></li>
@@ -218,7 +219,7 @@ c_dt &lt;-<span class="st"> </span>a_dt[, vars_to_choose, with =<span class="st"
 <div id="creating-new-column-1" class="section level2">
 <h2><span class="header-section-number">2.4</span> Creating new column</h2>
 <p>The syntax is</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">new_DT -&gt;<span class="st"> </span><span class="kw">copy</span>(DT)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">new_DT  &lt;-<span class="st"> </span><span class="kw">copy</span>(DT)
 new_DT[, <span class="st">`</span><span class="dt">:=</span><span class="st">`</span>(<span class="dt">new_var =</span> <span class="kw">func</span>(existed_vars))]</code></pre></div>
 <p>If we care about memory and are aware of all possible <em>side effects</em> on the original <code>DT</code>, we can do</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DT[, <span class="st">`</span><span class="dt">:=</span><span class="st">`</span>(<span class="dt">new_var =</span> <span class="kw">func</span>(existed_vars))]</code></pre></div>
@@ -332,9 +333,9 @@ a_summ_dt &lt;-<span class="st"> </span>fake_dt[, .(<span class="dt">grouped_mea
                      .SDcols =<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;x&#39;</span>, <span class="st">&#39;z&#39;</span>)]
 (c_summ_dt)</code></pre></div>
 <pre><code>##    type x         z
-## 1:    a 2 0.3985539
-## 2:    b 5 0.7106599
-## 3:    c 8 0.2403719</code></pre>
+## 1:    a 2 0.3665022
+## 2:    b 5 0.7453886
+## 3:    c 8 0.2912953</code></pre>
 </div>
 </div>
 

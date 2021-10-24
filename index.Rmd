@@ -253,6 +253,8 @@ my_df_c <-
 (my_df_c)
 ```
 
+## Convert long to wide table
+
 
 # Data.table way {#dt}
 
@@ -318,7 +320,7 @@ c_dt <- a_dt[, vars_to_choose, with = FALSE]
 The syntax is
 
 ```{r, eval=FALSE}
-new_DT -> copy(DT)
+new_DT  <- copy(DT)
 new_DT[, `:=`(new_var = func(existed_vars))]
 ```
 
