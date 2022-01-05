@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Practical R: a concise manual</title>
-  <meta name="description" content="Practical R: a concise manual">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6 apply family functions | Practical R: a concise manual</title>
+  <meta name="description" content="6 apply family functions | Practical R: a concise manual" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Practical R: a concise manual" />
+  <meta property="og:title" content="6 apply family functions | Practical R: a concise manual" />
   <meta property="og:type" content="book" />
   
   
@@ -17,29 +16,32 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Practical R: a concise manual" />
+  <meta name="twitter:title" content="6 apply family functions | Practical R: a concise manual" />
   
   
   
 
-<meta name="author" content="Lingyun Zhang">
+<meta name="author" content="Lingyun Zhang" />
 
 
-<meta name="date" content="2021-10-25">
+<meta name="date" content="2022-01-06" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="writing-functions.html">
-<link rel="next" href="purrr-package.html">
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link rel="prev" href="writing-functions.html"/>
+<link rel="next" href="purrr-package.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -47,6 +49,9 @@
 
 
 
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -87,6 +92,7 @@ code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* Com
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
+
 </head>
 
 <body>
@@ -109,8 +115,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.4" data-path="ti.html"><a href="ti.html#creating-new-column"><i class="fa fa-check"></i><b>1.4</b> Creating new column</a></li>
 <li class="chapter" data-level="1.5" data-path="ti.html"><a href="ti.html#keeping-some-rows"><i class="fa fa-check"></i><b>1.5</b> Keeping some rows</a></li>
 <li class="chapter" data-level="1.6" data-path="ti.html"><a href="ti.html#arrange-rows"><i class="fa fa-check"></i><b>1.6</b> Arrange rows</a></li>
-<li class="chapter" data-level="1.7" data-path="ti.html"><a href="ti.html#changing-variables-names"><i class="fa fa-check"></i><b>1.7</b> Changing variables’ names</a></li>
-<li class="chapter" data-level="1.8" data-path="ti.html"><a href="ti.html#re-arranging-variables-positions"><i class="fa fa-check"></i><b>1.8</b> Re-arranging variables’ positions</a></li>
+<li class="chapter" data-level="1.7" data-path="ti.html"><a href="ti.html#changing-variables-names"><i class="fa fa-check"></i><b>1.7</b> Changing variables' names</a></li>
+<li class="chapter" data-level="1.8" data-path="ti.html"><a href="ti.html#re-arranging-variables-positions"><i class="fa fa-check"></i><b>1.8</b> Re-arranging variables' positions</a></li>
 <li class="chapter" data-level="1.9" data-path="ti.html"><a href="ti.html#making-summaryaggregation"><i class="fa fa-check"></i><b>1.9</b> Making summary/aggregation</a></li>
 <li class="chapter" data-level="1.10" data-path="ti.html"><a href="ti.html#on-group_by"><i class="fa fa-check"></i><b>1.10</b> On <code>group_by()</code></a></li>
 <li class="chapter" data-level="1.11" data-path="ti.html"><a href="ti.html#convert-long-to-wide-table"><i class="fa fa-check"></i><b>1.11</b> Convert long to wide table</a></li>
@@ -122,8 +128,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.4" data-path="dt.html"><a href="dt.html#creating-new-column-1"><i class="fa fa-check"></i><b>2.4</b> Creating new column</a></li>
 <li class="chapter" data-level="2.5" data-path="dt.html"><a href="dt.html#keeping-some-rows-1"><i class="fa fa-check"></i><b>2.5</b> Keeping some rows</a></li>
 <li class="chapter" data-level="2.6" data-path="dt.html"><a href="dt.html#arrange-rows-1"><i class="fa fa-check"></i><b>2.6</b> Arrange rows</a></li>
-<li class="chapter" data-level="2.7" data-path="dt.html"><a href="dt.html#changing-variables-names-1"><i class="fa fa-check"></i><b>2.7</b> Changing variables’ names</a></li>
-<li class="chapter" data-level="2.8" data-path="dt.html"><a href="dt.html#re-arranging-variables-positions-1"><i class="fa fa-check"></i><b>2.8</b> Re-arranging variables’ positions</a></li>
+<li class="chapter" data-level="2.7" data-path="dt.html"><a href="dt.html#changing-variables-names-1"><i class="fa fa-check"></i><b>2.7</b> Changing variables' names</a></li>
+<li class="chapter" data-level="2.8" data-path="dt.html"><a href="dt.html#re-arranging-variables-positions-1"><i class="fa fa-check"></i><b>2.8</b> Re-arranging variables' positions</a></li>
 <li class="chapter" data-level="2.9" data-path="dt.html"><a href="dt.html#making-summaryaggregation-1"><i class="fa fa-check"></i><b>2.9</b> Making summary/aggregation</a></li>
 </ul></li>
 <li class="part"><span><b>Part III: Data Exportation</b></span></li>
@@ -203,12 +209,13 @@ lower_and_upper_limits</code></pre></div>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -216,12 +223,12 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -232,7 +239,19 @@ gitbook.start({
 "link": null,
 "text": null
 },
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

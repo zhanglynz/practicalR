@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Practical R: a concise manual</title>
-  <meta name="description" content="Practical R: a concise manual">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1 Tidyverse way | Practical R: a concise manual</title>
+  <meta name="description" content="1 Tidyverse way | Practical R: a concise manual" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Practical R: a concise manual" />
+  <meta property="og:title" content="1 Tidyverse way | Practical R: a concise manual" />
   <meta property="og:type" content="book" />
   
   
@@ -17,29 +16,32 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Practical R: a concise manual" />
+  <meta name="twitter:title" content="1 Tidyverse way | Practical R: a concise manual" />
   
   
   
 
-<meta name="author" content="Lingyun Zhang">
+<meta name="author" content="Lingyun Zhang" />
 
 
-<meta name="date" content="2021-10-25">
+<meta name="date" content="2022-01-06" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html">
-<link rel="next" href="dt.html">
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link rel="prev" href="index.html"/>
+<link rel="next" href="dt.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -47,6 +49,9 @@
 
 
 
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -87,6 +92,7 @@ code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* Com
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
+
 </head>
 
 <body>
@@ -109,8 +115,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.4" data-path="ti.html"><a href="ti.html#creating-new-column"><i class="fa fa-check"></i><b>1.4</b> Creating new column</a></li>
 <li class="chapter" data-level="1.5" data-path="ti.html"><a href="ti.html#keeping-some-rows"><i class="fa fa-check"></i><b>1.5</b> Keeping some rows</a></li>
 <li class="chapter" data-level="1.6" data-path="ti.html"><a href="ti.html#arrange-rows"><i class="fa fa-check"></i><b>1.6</b> Arrange rows</a></li>
-<li class="chapter" data-level="1.7" data-path="ti.html"><a href="ti.html#changing-variables-names"><i class="fa fa-check"></i><b>1.7</b> Changing variables’ names</a></li>
-<li class="chapter" data-level="1.8" data-path="ti.html"><a href="ti.html#re-arranging-variables-positions"><i class="fa fa-check"></i><b>1.8</b> Re-arranging variables’ positions</a></li>
+<li class="chapter" data-level="1.7" data-path="ti.html"><a href="ti.html#changing-variables-names"><i class="fa fa-check"></i><b>1.7</b> Changing variables' names</a></li>
+<li class="chapter" data-level="1.8" data-path="ti.html"><a href="ti.html#re-arranging-variables-positions"><i class="fa fa-check"></i><b>1.8</b> Re-arranging variables' positions</a></li>
 <li class="chapter" data-level="1.9" data-path="ti.html"><a href="ti.html#making-summaryaggregation"><i class="fa fa-check"></i><b>1.9</b> Making summary/aggregation</a></li>
 <li class="chapter" data-level="1.10" data-path="ti.html"><a href="ti.html#on-group_by"><i class="fa fa-check"></i><b>1.10</b> On <code>group_by()</code></a></li>
 <li class="chapter" data-level="1.11" data-path="ti.html"><a href="ti.html#convert-long-to-wide-table"><i class="fa fa-check"></i><b>1.11</b> Convert long to wide table</a></li>
@@ -122,8 +128,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.4" data-path="dt.html"><a href="dt.html#creating-new-column-1"><i class="fa fa-check"></i><b>2.4</b> Creating new column</a></li>
 <li class="chapter" data-level="2.5" data-path="dt.html"><a href="dt.html#keeping-some-rows-1"><i class="fa fa-check"></i><b>2.5</b> Keeping some rows</a></li>
 <li class="chapter" data-level="2.6" data-path="dt.html"><a href="dt.html#arrange-rows-1"><i class="fa fa-check"></i><b>2.6</b> Arrange rows</a></li>
-<li class="chapter" data-level="2.7" data-path="dt.html"><a href="dt.html#changing-variables-names-1"><i class="fa fa-check"></i><b>2.7</b> Changing variables’ names</a></li>
-<li class="chapter" data-level="2.8" data-path="dt.html"><a href="dt.html#re-arranging-variables-positions-1"><i class="fa fa-check"></i><b>2.8</b> Re-arranging variables’ positions</a></li>
+<li class="chapter" data-level="2.7" data-path="dt.html"><a href="dt.html#changing-variables-names-1"><i class="fa fa-check"></i><b>2.7</b> Changing variables' names</a></li>
+<li class="chapter" data-level="2.8" data-path="dt.html"><a href="dt.html#re-arranging-variables-positions-1"><i class="fa fa-check"></i><b>2.8</b> Re-arranging variables' positions</a></li>
 <li class="chapter" data-level="2.9" data-path="dt.html"><a href="dt.html#making-summaryaggregation-1"><i class="fa fa-check"></i><b>2.9</b> Making summary/aggregation</a></li>
 </ul></li>
 <li class="part"><span><b>Part III: Data Exportation</b></span></li>
@@ -169,18 +175,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>how to create a new column based on existed columns in the data frame;</li>
 <li>how to keep the rows that meet our set conditions;</li>
 <li>how to arrange the data frame based on some variables;</li>
-<li>how to change variables’ names;</li>
+<li>how to change variables' names;</li>
 <li>how to re-arrange positions of variables in the data frame;</li>
 <li>how to have summary of the data frame;</li>
 <li>how to convert a <em>long</em> table to a <em>wide</em> table;</li>
 <li>how to convert a <em>wide</em> table to a <em>long</em> table;</li>
 </ul>
-<p>The difference between Chapter <a href="ti.html#ti">1</a> and Chapter <a href="dt.html#dt">2</a> is that for the same task we use different tools (to be exact <strong>functions</strong>)—in this chapter we use functions that come from <code>tidyverse</code> package (to be exact, it’s a collection of R packages, including <code>readr</code>, <code>tibble</code>, <code>dplyr</code>, <code>tidyr</code>, <code>ggplot2</code>, <code>purrr</code>, <code>stringr</code> and <code>forcats</code> as components), whereas in the next chapter we use functions that mainly belong to <code>data.table</code> package.</p>
+<p>The difference between Chapter <a href="ti.html#ti">1</a> and Chapter <a href="dt.html#dt">2</a> is that for the same task we use different tools (to be exact <strong>functions</strong>)---in this chapter we use functions that come from <code>tidyverse</code> package (to be exact, it's a collection of R packages, including <code>readr</code>, <code>tibble</code>, <code>dplyr</code>, <code>tidyr</code>, <code>ggplot2</code>, <code>purrr</code>, <code>stringr</code> and <code>forcats</code> as components), whereas in the next chapter we use functions that mainly belong to <code>data.table</code> package.</p>
 <p>The first line of R codes in this chapter should be</p>
 <p><code>library(tidyverse)</code></p>
 <div id="tibble" class="section level2">
 <h2><span class="header-section-number">1.1</span> <code>tibble</code></h2>
-<p>What is a <code>tibble</code>? The short answer is: A tibble is a data frame—probably this is enough, but we may also want to know that—it’s an enhanced data frame in a sense that it forces some rules (e.g. type rule) to be more strictly obeyed (the effects are: on one hand side, we lose some freedom associated with a data frame, on the other hand side, it prevents us from making some subtle mistakes while dealing with a data frame.) Tidyverse community encourages people to use tibbles. A tibble may not be working with some (old) packages, in that case, just use <code>as.data.frame()</code> to do converting. We can convert a data frame to a tibble by using <code>tibble::as_tibble()</code>.</p>
+<p>What is a <code>tibble</code>? The short answer is: A tibble is a data frame---probably this is enough, but we may also want to know that---it's an enhanced data frame in a sense that it forces some rules (e.g. type rule) to be more strictly obeyed (the effects are: on one hand side, we lose some freedom associated with a data frame, on the other hand side, it prevents us from making some subtle mistakes while dealing with a data frame.) Tidyverse community encourages people to use tibbles. A tibble may not be working with some (old) packages, in that case, just use <code>as.data.frame()</code> to do converting. We can convert a data frame to a tibble by using <code>tibble::as_tibble()</code>.</p>
 </div>
 <div id="creating-a-tibble" class="section level2">
 <h2><span class="header-section-number">1.2</span> Creating a tibble</h2>
@@ -194,11 +200,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
              <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
 (a_df)</code></pre></div>
 <pre><code>##    x          y    z
-## 1  1  1.4300938 &lt;NA&gt;
-## 2  2  1.1266296    a
-## 3  3 -0.4446853 &lt;NA&gt;
-## 4 NA  0.2024018    b
-## 5 NA -0.1018660    c</code></pre>
+## 1  1 -0.4888356 &lt;NA&gt;
+## 2  2  0.8792913    a
+## 3  3 -0.8432829 &lt;NA&gt;
+## 4 NA -1.0680265    b
+## 5 NA -0.7335097    c</code></pre>
 <p><strong>Example 2:</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
 a_tibble &lt;-<span class="st"> </span>
@@ -207,14 +213,14 @@ a_tibble &lt;-<span class="st"> </span>
          <span class="dt">z =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="st">&#39;a&#39;</span>, <span class="ot">NA</span>, <span class="st">&#39;b&#39;</span>, <span class="st">&#39;c&#39;</span>))
 (a_tibble)</code></pre></div>
 <pre><code>## # A tibble: 5 x 3
-##       x      y z    
-##   &lt;int&gt;  &lt;dbl&gt; &lt;chr&gt;
-## 1     1  0.492 &lt;NA&gt; 
-## 2     2  0.169 a    
-## 3     3 -0.657 &lt;NA&gt; 
-## 4    NA -0.306 b    
-## 5    NA -0.158 c</code></pre>
-<p><strong>Example 3:</strong> tibble is more “strict”</p>
+##       x       y z    
+##   &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;
+## 1     1 -0.549  &lt;NA&gt; 
+## 2     2 -0.286  a    
+## 3     3 -0.0421 &lt;NA&gt; 
+## 4    NA -0.127  b    
+## 5    NA -0.183  c</code></pre>
+<p><strong>Example 3:</strong> tibble is more &quot;strict&quot;</p>
 <p>We can run the following code if we want but it silently changes the type of variable <code>x</code> from integer to character.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a_df[<span class="kw">is.na</span>(a_df)] &lt;-<span class="st"> &quot;&quot;</span></code></pre></div>
 <p>If we run the following code we get an error message</p>
@@ -226,35 +232,38 @@ a_tibble &lt;-<span class="st"> </span>
 </div>
 <div id="selecting-columns" class="section level2">
 <h2><span class="header-section-number">1.3</span> Selecting columns</h2>
-<p>We can use functions <code>select()</code> and <code>select_at()</code>.</p>
+<p>We can use functions <code>select()</code> (plus <code>all_of()</code>) and <code>select_at()</code>.</p>
 <p><strong>Example 1:</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">b_df &lt;-<span class="st"> </span><span class="kw">select</span>(a_df, x, y)
 (b_df)</code></pre></div>
 <pre><code>##    x          y
-## 1  1  1.4300938
-## 2  2  1.1266296
-## 3  3 -0.4446853
-## 4 NA  0.2024018
-## 5 NA -0.1018660</code></pre>
+## 1  1 -0.4888356
+## 2  2  0.8792913
+## 3  3 -0.8432829
+## 4 NA -1.0680265
+## 5 NA -0.7335097</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(<span class="kw">c</span>(<span class="kw">is_tibble</span>(a_df), <span class="kw">is_tibble</span>(b_df), <span class="kw">is.data.frame</span>(b_df)))</code></pre></div>
 <pre><code>## [1] FALSE FALSE  TRUE</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">c_df &lt;-<span class="st"> </span><span class="kw">select_at</span>(a_df, <span class="dt">.var =</span> <span class="kw">c</span>(<span class="st">&quot;z&quot;</span>, <span class="st">&quot;y&quot;</span>))
 (c_df)</code></pre></div>
 <pre><code>##      z          y
-## 1 &lt;NA&gt;  1.4300938
-## 2    a  1.1266296
-## 3 &lt;NA&gt; -0.4446853
-## 4    b  0.2024018
-## 5    c -0.1018660</code></pre>
+## 1 &lt;NA&gt; -0.4888356
+## 2    a  0.8792913
+## 3 &lt;NA&gt; -0.8432829
+## 4    b -1.0680265
+## 5    c -0.7335097</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">c1_df &lt;-<span class="st"> </span><span class="kw">select</span>(a_df, <span class="kw">all_of</span>(<span class="kw">c</span>(<span class="st">&quot;z&quot;</span>, <span class="st">&quot;y&quot;</span>)))
+(<span class="kw">identical</span>(c_df, c1_df))</code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
 <p><strong>Example 2:</strong> Selecting plus renaming</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">d_df &lt;-<span class="st"> </span><span class="kw">select</span>(a_df, <span class="dt">new_x =</span> x, <span class="dt">new_y =</span> y)
 (d_df)</code></pre></div>
 <pre><code>##   new_x      new_y
-## 1     1  1.4300938
-## 2     2  1.1266296
-## 3     3 -0.4446853
-## 4    NA  0.2024018
-## 5    NA -0.1018660</code></pre>
+## 1     1 -0.4888356
+## 2     2  0.8792913
+## 3     3 -0.8432829
+## 4    NA -1.0680265
+## 5    NA -0.7335097</code></pre>
 </div>
 <div id="creating-new-column" class="section level2">
 <h2><span class="header-section-number">1.4</span> Creating new column</h2>
@@ -262,12 +271,12 @@ a_tibble &lt;-<span class="st"> </span>
 <p><strong>Example 1:</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">e_df &lt;-<span class="st"> </span><span class="kw">mutate</span>(a_df, <span class="dt">u =</span> y<span class="op">^</span><span class="dv">2</span>, <span class="dt">v =</span> <span class="kw">is.na</span>(z))
 (e_df)</code></pre></div>
-<pre><code>##    x          y    z          u     v
-## 1  1  1.4300938 &lt;NA&gt; 2.04516818  TRUE
-## 2  2  1.1266296    a 1.26929435 FALSE
-## 3  3 -0.4446853 &lt;NA&gt; 0.19774502  TRUE
-## 4 NA  0.2024018    b 0.04096650 FALSE
-## 5 NA -0.1018660    c 0.01037669 FALSE</code></pre>
+<pre><code>##    x          y    z         u     v
+## 1  1 -0.4888356 &lt;NA&gt; 0.2389602  TRUE
+## 2  2  0.8792913    a 0.7731533 FALSE
+## 3  3 -0.8432829 &lt;NA&gt; 0.7111260  TRUE
+## 4 NA -1.0680265    b 1.1406807 FALSE
+## 5 NA -0.7335097    c 0.5380365 FALSE</code></pre>
 </div>
 <div id="keeping-some-rows" class="section level2">
 <h2><span class="header-section-number">1.5</span> Keeping some rows</h2>
@@ -275,8 +284,28 @@ a_tibble &lt;-<span class="st"> </span>
 <p><strong>Example:</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f_df &lt;-<span class="st"> </span><span class="kw">filter</span>(a_df, <span class="kw">abs</span>(y) <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.5</span> <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(z))
 (f_df)</code></pre></div>
-<pre><code>##   x       y z
-## 1 2 1.12663 a</code></pre>
+<pre><code>##    x          y z
+## 1  2  0.8792913 a
+## 2 NA -1.0680265 b
+## 3 NA -0.7335097 c</code></pre>
+<p>If we want to choose rows using their position, the useful functions are: <code>slice(n1:n2)</code>, <code>slice_head(n = n1)</code>, <code>slice_tail(n = n2)</code>, <code>slice_sample(n = n1)</code> (or <code>slice_sample(prop = 0.x)</code>)</p>
+<p><strong>Example:</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fa_df &lt;-<span class="st"> </span><span class="kw">slice_sample</span>(a_df, <span class="dt">prop =</span> <span class="fl">0.4</span>)
+(fa_df)</code></pre></div>
+<pre><code>##    x          y    z
+## 1 NA -1.0680265    b
+## 2  1 -0.4888356 &lt;NA&gt;</code></pre>
+<p>Another two useful slice-functions: <code>slice_min()</code> and <code>slice_max()</code>. <strong>Example:</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fb_df &lt;-<span class="st"> </span><span class="kw">slice_min</span>(a_df, y, <span class="dt">n =</span> <span class="dv">2</span>)
+(fb_df)</code></pre></div>
+<pre><code>##    x          y    z
+## 1 NA -1.0680265    b
+## 2  3 -0.8432829 &lt;NA&gt;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fc_df &lt;-<span class="st"> </span><span class="kw">slice_max</span>(a_df, y, <span class="dt">n =</span> <span class="dv">2</span>)
+(fc_df)</code></pre></div>
+<pre><code>##   x          y    z
+## 1 2  0.8792913    a
+## 2 1 -0.4888356 &lt;NA&gt;</code></pre>
 </div>
 <div id="arrange-rows" class="section level2">
 <h2><span class="header-section-number">1.6</span> Arrange rows</h2>
@@ -285,54 +314,62 @@ a_tibble &lt;-<span class="st"> </span>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">g_df &lt;-<span class="st"> </span><span class="kw">arrange</span>(a_df, <span class="kw">desc</span>(z))
 (g_df)</code></pre></div>
 <pre><code>##    x          y    z
-## 1 NA -0.1018660    c
-## 2 NA  0.2024018    b
-## 3  2  1.1266296    a
-## 4  1  1.4300938 &lt;NA&gt;
-## 5  3 -0.4446853 &lt;NA&gt;</code></pre>
+## 1 NA -0.7335097    c
+## 2 NA -1.0680265    b
+## 3  2  0.8792913    a
+## 4  1 -0.4888356 &lt;NA&gt;
+## 5  3 -0.8432829 &lt;NA&gt;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">h_df &lt;-<span class="st"> </span><span class="kw">arrange</span>(a_df, <span class="kw">desc</span>(z), y)
 (h_df)</code></pre></div>
 <pre><code>##    x          y    z
-## 1 NA -0.1018660    c
-## 2 NA  0.2024018    b
-## 3  2  1.1266296    a
-## 4  3 -0.4446853 &lt;NA&gt;
-## 5  1  1.4300938 &lt;NA&gt;</code></pre>
+## 1 NA -0.7335097    c
+## 2 NA -1.0680265    b
+## 3  2  0.8792913    a
+## 4  3 -0.8432829 &lt;NA&gt;
+## 5  1 -0.4888356 &lt;NA&gt;</code></pre>
 </div>
 <div id="changing-variables-names" class="section level2">
-<h2><span class="header-section-number">1.7</span> Changing variables’ names</h2>
+<h2><span class="header-section-number">1.7</span> Changing variables' names</h2>
 <p>We use <code>rename()</code>.</p>
 <p><strong>Example:</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">i_df &lt;-<span class="st"> </span><span class="kw">rename</span>(a_df, <span class="dt">new_z =</span> z)
 (i_df)</code></pre></div>
 <pre><code>##    x          y new_z
-## 1  1  1.4300938  &lt;NA&gt;
-## 2  2  1.1266296     a
-## 3  3 -0.4446853  &lt;NA&gt;
-## 4 NA  0.2024018     b
-## 5 NA -0.1018660     c</code></pre>
+## 1  1 -0.4888356  &lt;NA&gt;
+## 2  2  0.8792913     a
+## 3  3 -0.8432829  &lt;NA&gt;
+## 4 NA -1.0680265     b
+## 5 NA -0.7335097     c</code></pre>
 </div>
 <div id="re-arranging-variables-positions" class="section level2">
-<h2><span class="header-section-number">1.8</span> Re-arranging variables’ positions</h2>
-<p>For outputting purpose, we may want to re-arrange variables’ positions, and we can use <code>select(df, all_of(a_ch_vec))</code> or <code>select_at(df, .var = a_ch_vec)</code>.</p>
+<h2><span class="header-section-number">1.8</span> Re-arranging variables' positions</h2>
+<p>For outputting purpose, we may want to re-arrange variables' positions, and we can use <code>select(df, all_of(a_ch_vec))</code> or <code>select_at(df, .var = a_ch_vec)</code> or <code>relocate()</code>.</p>
 <p><strong>Example:</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">new_var_oder &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;z&quot;</span>, <span class="st">&quot;y&quot;</span>, <span class="st">&quot;x&quot;</span>)
 j_df &lt;-<span class="st"> </span><span class="kw">select</span>(a_df, <span class="kw">all_of</span>(new_var_oder))
 (j_df)</code></pre></div>
 <pre><code>##      z          y  x
-## 1 &lt;NA&gt;  1.4300938  1
-## 2    a  1.1266296  2
-## 3 &lt;NA&gt; -0.4446853  3
-## 4    b  0.2024018 NA
-## 5    c -0.1018660 NA</code></pre>
+## 1 &lt;NA&gt; -0.4888356  1
+## 2    a  0.8792913  2
+## 3 &lt;NA&gt; -0.8432829  3
+## 4    b -1.0680265 NA
+## 5    c -0.7335097 NA</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">j_df_a &lt;-<span class="st"> </span><span class="kw">select_at</span>(a_df, <span class="dt">.var =</span> new_var_oder)
 (j_df_a)</code></pre></div>
 <pre><code>##      z          y  x
-## 1 &lt;NA&gt;  1.4300938  1
-## 2    a  1.1266296  2
-## 3 &lt;NA&gt; -0.4446853  3
-## 4    b  0.2024018 NA
-## 5    c -0.1018660 NA</code></pre>
+## 1 &lt;NA&gt; -0.4888356  1
+## 2    a  0.8792913  2
+## 3 &lt;NA&gt; -0.8432829  3
+## 4    b -1.0680265 NA
+## 5    c -0.7335097 NA</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">j_df_b &lt;-<span class="st"> </span><span class="kw">relocate</span>(a_df, <span class="kw">c</span>(z, y, x))
+(j_df_b)</code></pre></div>
+<pre><code>##      z          y  x
+## 1 &lt;NA&gt; -0.4888356  1
+## 2    a  0.8792913  2
+## 3 &lt;NA&gt; -0.8432829  3
+## 4    b -1.0680265 NA
+## 5    c -0.7335097 NA</code></pre>
 </div>
 <div id="making-summaryaggregation" class="section level2">
 <h2><span class="header-section-number">1.9</span> Making summary/aggregation</h2>
@@ -373,16 +410,16 @@ a_summ &lt;-<span class="st"> </span>
 <pre><code>## # A tibble: 3 x 4
 ##   type  grouped_mean_of_x grouped_mean_of_y grouped_mean_of_z
 ##   &lt;fct&gt;             &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt;
-## 1 a                     2             0.338             0.771
-## 2 b                     5            -0.309             0.602
-## 3 c                     8            -0.487             0.300</code></pre>
+## 1 a                     2            0.101              0.430
+## 2 b                     5            0.328              0.533
+## 3 c                     8           -0.0153             0.638</code></pre>
 </div>
 <div id="on-group_by" class="section level2">
 <h2><span class="header-section-number">1.10</span> On <code>group_by()</code></h2>
-<p>Not only does <code>group_by()</code> work with <code>summarise()</code>, but it also work with other <code>dplyr</code> functions. Take notice the following points:</p>
+<p>Not only does <code>group_by()</code> work with <code>summarise()</code>, but it also works with other <code>dplyr</code> functions. Take notice the following points:</p>
 <ul>
 <li><code>group_by(grp_var) %&gt;% summarise(, .groups = 'drop')</code>. The other arguments for <code>.groups</code> are <code>NULL</code> (the default), <code>'drop_last'</code> and <code>'keep'</code>. My habit is that always using <code>.groups = 'drop'</code>, in such a way the output is an un-grouped data frame.</li>
-<li>If <code>group_by()</code> has been used before <code>select()</code>, then the grouping variables must appear in <code>select()</code>. If we don’t want these grouping variables, we do <code>ungroup()</code> before <code>select()</code>.</li>
+<li>If <code>group_by()</code> has been used before <code>select()</code>, then the grouping variables must appear in <code>select()</code>. If we don't want these grouping variables, we do <code>ungroup()</code> before <code>select()</code>.</li>
 <li><code>mutate()</code> under <code>group_by()</code>: see Example 1 below.</li>
 <li><code>filter()</code> under <code>group_by</code>: see Example 2 below.</li>
 <li><code>arrange()</code> under <code>group_by</code>: see Example 3 below.</li>
@@ -394,16 +431,16 @@ a_summ &lt;-<span class="st"> </span>
              <span class="dt">y =</span> LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>],
              <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
 (my_df)</code></pre></div>
-<pre><code>##   g         x y
-## 1 a 0.3685011 A
-## 2 a 0.3124413 B
-## 3 a 0.2433633 C
-## 4 b 0.2985947 D
-## 5 b 0.2375154 E
-## 6 b 0.4789493 F
-## 7 c 0.3980609 G
-## 8 c 0.5107027 H
-## 9 c 0.9546995 I</code></pre>
+<pre><code>##   g          x y
+## 1 a 0.65189240 A
+## 2 a 0.29651050 B
+## 3 a 0.92132494 C
+## 4 b 0.02279862 D
+## 5 b 0.39612890 E
+## 6 b 0.13626137 F
+## 7 c 0.59086854 G
+## 8 c 0.03909266 H
+## 9 c 0.71630947 I</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_df_a &lt;-<span class="st"> </span>
 <span class="st">  </span>my_df <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(g) <span class="op">%&gt;%</span><span class="st"> </span>
@@ -411,17 +448,17 @@ a_summ &lt;-<span class="st"> </span>
 <span class="st">  </span><span class="kw">ungroup</span>()
 (my_df_a)</code></pre></div>
 <pre><code>## # A tibble: 9 x 4
-##   g         x y     ID_in_grp
-##   &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;int&gt;
-## 1 a     0.369 A             1
-## 2 a     0.312 B             2
-## 3 a     0.243 C             3
-## 4 b     0.299 D             1
-## 5 b     0.238 E             2
-## 6 b     0.479 F             3
-## 7 c     0.398 G             1
-## 8 c     0.511 H             2
-## 9 c     0.955 I             3</code></pre>
+##   g          x y     ID_in_grp
+##   &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;int&gt;
+## 1 a     0.652  A             1
+## 2 a     0.297  B             2
+## 3 a     0.921  C             3
+## 4 b     0.0228 D             1
+## 5 b     0.396  E             2
+## 6 b     0.136  F             3
+## 7 c     0.591  G             1
+## 8 c     0.0391 H             2
+## 9 c     0.716  I             3</code></pre>
 <p><strong>Example 2:</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_df_b &lt;-<span class="st"> </span>
 <span class="st">  </span>my_df_a <span class="op">%&gt;%</span><span class="st"> </span>
@@ -432,9 +469,9 @@ a_summ &lt;-<span class="st"> </span>
 <pre><code>## # A tibble: 3 x 4
 ##   g         x y     ID_in_grp
 ##   &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;int&gt;
-## 1 a     0.369 A             1
-## 2 b     0.238 E             2
-## 3 c     0.955 I             3</code></pre>
+## 1 a     0.652 A             1
+## 2 b     0.396 E             2
+## 3 c     0.716 I             3</code></pre>
 <p><strong>Example 3:</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_df_c &lt;-<span class="st"> </span>
 <span class="st">  </span>my_df <span class="op">%&gt;%</span><span class="st"> </span>
@@ -443,17 +480,17 @@ a_summ &lt;-<span class="st"> </span>
 (my_df_c)</code></pre></div>
 <pre><code>## # A tibble: 9 x 3
 ## # Groups:   g [3]
-##   g         x y    
-##   &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;
-## 1 a     0.243 C    
-## 2 a     0.312 B    
-## 3 a     0.369 A    
-## 4 b     0.238 E    
-## 5 b     0.299 D    
-## 6 b     0.479 F    
-## 7 c     0.398 G    
-## 8 c     0.511 H    
-## 9 c     0.955 I</code></pre>
+##   g          x y    
+##   &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;
+## 1 a     0.297  B    
+## 2 a     0.652  A    
+## 3 a     0.921  C    
+## 4 b     0.0228 D    
+## 5 b     0.136  F    
+## 6 b     0.396  E    
+## 7 c     0.0391 H    
+## 8 c     0.591  G    
+## 9 c     0.716  I</code></pre>
 </div>
 <div id="convert-long-to-wide-table" class="section level2">
 <h2><span class="header-section-number">1.11</span> Convert long to wide table</h2>
@@ -469,12 +506,13 @@ a_summ &lt;-<span class="st"> </span>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -482,12 +520,12 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -498,7 +536,19 @@ gitbook.start({
 "link": null,
 "text": null
 },
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

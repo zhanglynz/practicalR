@@ -92,7 +92,7 @@ a_tibble[is.na(a_tibble)] <- ""
 
 ## Selecting columns
 
-We can use functions `select()` and `select_at()`.
+We can use functions `select()` (plus `all_of()`) and `select_at()`.
 
 **Example 1:**
 ```{r, warning=FALSE, message=FALSE}
@@ -102,6 +102,9 @@ b_df <- select(a_df, x, y)
 
 c_df <- select_at(a_df, .var = c("z", "y"))
 (c_df)
+
+c1_df <- select(a_df, all_of(c("z", "y")))
+(identical(c_df, c1_df))
 ```
 
 **Example 2:** Selecting plus renaming
@@ -130,6 +133,23 @@ f_df <- filter(a_df, abs(y) > 0.5 & !is.na(z))
 (f_df)
 ```
 
+If we want to choose rows using their position, the useful functions are: `slice(n1:n2)`, `slice_head(n = n1)`, `slice_tail(n = n2)`, `slice_sample(n = n1)` (or `slice_sample(prop = 0.x)`) 
+
+**Example:**
+```{r, warning=FALSE, message=FALSE}
+fa_df <- slice_sample(a_df, prop = 0.4)
+(fa_df)
+```
+
+Another two useful slice-functions: `slice_min()` and `slice_max()`.
+**Example:**
+```{r, warning=FALSE, message=FALSE}
+fb_df <- slice_min(a_df, y, n = 2)
+(fb_df)
+fc_df <- slice_max(a_df, y, n = 2)
+(fc_df)
+```
+
 ## Arrange rows
 
 Some rows of the data frame will be put at the top and other rows will be put at the bottom; for this purpose, we use `arrange()`.
@@ -155,7 +175,7 @@ i_df <- rename(a_df, new_z = z)
 
 ## Re-arranging variables' positions
 
-For outputting purpose, we may want to re-arrange variables' positions, and we can use `select(df, all_of(a_ch_vec))` or `select_at(df, .var = a_ch_vec)`. 
+For outputting purpose, we may want to re-arrange variables' positions, and we can use `select(df, all_of(a_ch_vec))` or `select_at(df, .var = a_ch_vec)` or `relocate()`. 
 
 **Example:**
 ```{r, warning=FALSE, message=FALSE}
@@ -164,6 +184,8 @@ j_df <- select(a_df, all_of(new_var_oder))
 (j_df)
 j_df_a <- select_at(a_df, .var = new_var_oder)
 (j_df_a)
+j_df_b <- relocate(a_df, c(z, y, x))
+(j_df_b)
 ```
 
 ## Making summary/aggregation
@@ -209,7 +231,7 @@ b_summ <-
 
 ## On `group_by()`
 
-Not only does `group_by()` work with `summarise()`, but it also work with other `dplyr` functions. Take notice the following points:
+Not only does `group_by()` work with `summarise()`, but it also works with other `dplyr` functions. Take notice the following points:
 
 -  `group_by(grp_var) %>% summarise(, .groups = 'drop')`. The other arguments for `.groups` are `NULL` (the default), `'drop_last'` and `'keep'`. My habit is that always using `.groups = 'drop'`, in such a way the output is an un-grouped data frame.
 - If `group_by()` has been used before `select()`, then the grouping variables must appear in `select()`. If we don't want these grouping variables, we do `ungroup()` before `select()`.
