@@ -275,8 +275,36 @@ my_df_c <-
 (my_df_c)
 ```
 
-## Convert long to wide table
+## Convert wide to long table
+**Example:**
+```{r, warning=FALSE, message=FALSE}
+a_wide_tbl <- 
+  data.frame(ID = 1:5,
+             math_score = sample(50:100, 5, replace = TRUE),
+             stats_score = sample(50:100, 5, replace = TRUE),
+             english_score = sample(50:100, 5, replace = TRUE))
+(a_wide_tbl)
+a_long_tbl <-
+  a_wide_tbl %>% 
+  pivot_longer(cols = math_score:english_score,
+               names_to = "subject",
+               values_to = "score") %>% 
+  # polish
+  mutate(subject = stringr::str_sub(subject, start = 1L, end = -7L))
+(a_long_tbl)
+```
 
+## Convert long to wide table
+```{r, warning=FALSE, message=FALSE}
+b_wide_tbl <- 
+  a_long_tbl %>% 
+  pivot_wider(id_cols = ID,
+              names_from = subject,
+              values_from = score) %>% 
+  # polish
+  rename_with(.cols = math:english, .fn = function(x) stringr::str_c(x, "_score"))
+(b_wide_tbl)
+```
 
 # Data.table way {#dt}
 

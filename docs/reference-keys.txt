@@ -33,3 +33,4 @@ gt-package
 leaflet-package
 shiny-package
 knitr-package
+convert-wide-to-long-table

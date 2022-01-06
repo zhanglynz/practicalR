@@ -119,7 +119,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.8" data-path="ti.html"><a href="ti.html#re-arranging-variables-positions"><i class="fa fa-check"></i><b>1.8</b> Re-arranging variables' positions</a></li>
 <li class="chapter" data-level="1.9" data-path="ti.html"><a href="ti.html#making-summaryaggregation"><i class="fa fa-check"></i><b>1.9</b> Making summary/aggregation</a></li>
 <li class="chapter" data-level="1.10" data-path="ti.html"><a href="ti.html#on-group_by"><i class="fa fa-check"></i><b>1.10</b> On <code>group_by()</code></a></li>
-<li class="chapter" data-level="1.11" data-path="ti.html"><a href="ti.html#convert-long-to-wide-table"><i class="fa fa-check"></i><b>1.11</b> Convert long to wide table</a></li>
+<li class="chapter" data-level="1.11" data-path="ti.html"><a href="ti.html#convert-wide-to-long-table"><i class="fa fa-check"></i><b>1.11</b> Convert wide to long table</a></li>
+<li class="chapter" data-level="1.12" data-path="ti.html"><a href="ti.html#convert-long-to-wide-table"><i class="fa fa-check"></i><b>1.12</b> Convert long to wide table</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="dt.html"><a href="dt.html"><i class="fa fa-check"></i><b>2</b> Data.table way</a><ul>
 <li class="chapter" data-level="2.1" data-path="dt.html"><a href="dt.html#data.table"><i class="fa fa-check"></i><b>2.1</b> <code>data.table</code></a></li>
@@ -338,10 +339,10 @@ a_summ_dt &lt;-<span class="st"> </span>fake_dt[, .(<span class="dt">grouped_mea
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">c_summ_dt &lt;-<span class="st"> </span>fake_dt[, <span class="kw">lapply</span>(.SD, mean), by =<span class="st"> </span>type,
                      .SDcols =<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;x&#39;</span>, <span class="st">&#39;z&#39;</span>)]
 (c_summ_dt)</code></pre></div>
-<pre><code>##    type x         z
-## 1:    a 2 0.7307099
-## 2:    b 5 0.4512805
-## 3:    c 8 0.5000555</code></pre>
+<pre><code>##    type x          z
+## 1:    a 2 0.58276993
+## 2:    b 5 0.55184916
+## 3:    c 8 0.06482805</code></pre>
 </div>
 </div>
 
