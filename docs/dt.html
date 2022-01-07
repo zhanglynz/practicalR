@@ -24,7 +24,7 @@
 <meta name="author" content="Lingyun Zhang" />
 
 
-<meta name="date" content="2022-01-06" />
+<meta name="date" content="2022-01-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -121,6 +121,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.10" data-path="ti.html"><a href="ti.html#on-group_by"><i class="fa fa-check"></i><b>1.10</b> On <code>group_by()</code></a></li>
 <li class="chapter" data-level="1.11" data-path="ti.html"><a href="ti.html#convert-wide-to-long-table"><i class="fa fa-check"></i><b>1.11</b> Convert wide to long table</a></li>
 <li class="chapter" data-level="1.12" data-path="ti.html"><a href="ti.html#convert-long-to-wide-table"><i class="fa fa-check"></i><b>1.12</b> Convert long to wide table</a></li>
+<li class="chapter" data-level="1.13" data-path="ti.html"><a href="ti.html#references"><i class="fa fa-check"></i><b>1.13</b> References</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="dt.html"><a href="dt.html"><i class="fa fa-check"></i><b>2</b> Data.table way</a><ul>
 <li class="chapter" data-level="2.1" data-path="dt.html"><a href="dt.html#data.table"><i class="fa fa-check"></i><b>2.1</b> <code>data.table</code></a></li>
@@ -132,6 +133,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.7" data-path="dt.html"><a href="dt.html#changing-variables-names-1"><i class="fa fa-check"></i><b>2.7</b> Changing variables' names</a></li>
 <li class="chapter" data-level="2.8" data-path="dt.html"><a href="dt.html#re-arranging-variables-positions-1"><i class="fa fa-check"></i><b>2.8</b> Re-arranging variables' positions</a></li>
 <li class="chapter" data-level="2.9" data-path="dt.html"><a href="dt.html#making-summaryaggregation-1"><i class="fa fa-check"></i><b>2.9</b> Making summary/aggregation</a></li>
+<li class="chapter" data-level="2.10" data-path="dt.html"><a href="dt.html#convert-wide-to-long-table-1"><i class="fa fa-check"></i><b>2.10</b> Convert wide to long table</a></li>
+<li class="chapter" data-level="2.11" data-path="dt.html"><a href="dt.html#convert-long-to-wide-table-1"><i class="fa fa-check"></i><b>2.11</b> Convert long to wide table</a></li>
+<li class="chapter" data-level="2.12" data-path="dt.html"><a href="dt.html#references-1"><i class="fa fa-check"></i><b>2.12</b> References</a></li>
 </ul></li>
 <li class="part"><span><b>Part III: Data Exportation</b></span></li>
 <li class="part"><span><b>Part IV: Data Visualization</b></span></li>
@@ -339,10 +343,71 @@ a_summ_dt &lt;-<span class="st"> </span>fake_dt[, .(<span class="dt">grouped_mea
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">c_summ_dt &lt;-<span class="st"> </span>fake_dt[, <span class="kw">lapply</span>(.SD, mean), by =<span class="st"> </span>type,
                      .SDcols =<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;x&#39;</span>, <span class="st">&#39;z&#39;</span>)]
 (c_summ_dt)</code></pre></div>
-<pre><code>##    type x          z
-## 1:    a 2 0.58276993
-## 2:    b 5 0.55184916
-## 3:    c 8 0.06482805</code></pre>
+<pre><code>##    type x         z
+## 1:    a 2 0.6233145
+## 2:    b 5 0.3789263
+## 3:    c 8 0.6540608</code></pre>
+</div>
+<div id="convert-wide-to-long-table-1" class="section level2">
+<h2><span class="header-section-number">2.10</span> Convert wide to long table</h2>
+<p>We use <code>melt()</code>.</p>
+<p><strong>Example:</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a_wide_dt &lt;-<span class="st"> </span>
+<span class="st">  </span><span class="kw">data.table</span>(<span class="dt">ID =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,
+             <span class="dt">math_score =</span> <span class="kw">sample</span>(<span class="dv">50</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">5</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),
+             <span class="dt">stats_score =</span> <span class="kw">sample</span>(<span class="dv">50</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">5</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),
+             <span class="dt">english_score =</span> <span class="kw">sample</span>(<span class="dv">50</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">5</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>))
+(a_wide_dt)</code></pre></div>
+<pre><code>##    ID math_score stats_score english_score
+## 1:  1         72          64            89
+## 2:  2         83          90            59
+## 3:  3         78          84            98
+## 4:  4         91          69           100
+## 5:  5         87          89            60</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a_long_dt &lt;-<span class="st"> </span>
+<span class="st">  </span><span class="kw">melt</span>(a_wide_dt, <span class="dt">id.vars =</span> <span class="st">&quot;ID&quot;</span>, 
+       <span class="dt">measure.vars =</span> <span class="kw">c</span>(<span class="st">&quot;math_score&quot;</span>, <span class="st">&quot;stats_score&quot;</span>, <span class="st">&quot;english_score&quot;</span>),
+       <span class="dt">variable.name =</span> <span class="st">&quot;subject&quot;</span>,
+       <span class="dt">variable.factor =</span> <span class="ot">FALSE</span>,
+       <span class="dt">value.name =</span> <span class="st">&quot;score&quot;</span>)
+a_long_dt[, <span class="st">`</span><span class="dt">:=</span><span class="st">`</span>(<span class="dt">subject =</span> stringr<span class="op">::</span><span class="kw">str_sub</span>(subject, <span class="dt">start =</span> 1L, <span class="dt">end =</span> <span class="op">-</span>7L))]
+(a_long_dt)</code></pre></div>
+<pre><code>##     ID subject score
+##  1:  1    math    72
+##  2:  2    math    83
+##  3:  3    math    78
+##  4:  4    math    91
+##  5:  5    math    87
+##  6:  1   stats    64
+##  7:  2   stats    90
+##  8:  3   stats    84
+##  9:  4   stats    69
+## 10:  5   stats    89
+## 11:  1 english    89
+## 12:  2 english    59
+## 13:  3 english    98
+## 14:  4 english   100
+## 15:  5 english    60</code></pre>
+</div>
+<div id="convert-long-to-wide-table-1" class="section level2">
+<h2><span class="header-section-number">2.11</span> Convert long to wide table</h2>
+<p>We use <code>dcast()</code>.</p>
+<p><strong>Example:</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">b_wide_dt &lt;-<span class="st"> </span><span class="kw">dcast</span>(a_long_dt, ID <span class="op">~</span><span class="st"> </span>subject, <span class="dt">value.var =</span> <span class="st">&quot;score&quot;</span>)
+(b_wide_dt)</code></pre></div>
+<pre><code>##    ID english math stats
+## 1:  1      89   72    64
+## 2:  2      59   83    90
+## 3:  3      98   78    84
+## 4:  4     100   91    69
+## 5:  5      60   87    89</code></pre>
+</div>
+<div id="references-1" class="section level2">
+<h2><span class="header-section-number">2.12</span> References</h2>
+<ol style="list-style-type: decimal">
+<li><p>Introduction to <code>data.table</code>. URL: <a href="https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html" class="uri">https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html</a></p></li>
+<li><p>Efficient reshaping using <code>data.table</code>. URL: <a href="https://cran.r-project.org/web/packages/data.table/vignettes/datatable-reshape.html" class="uri">https://cran.r-project.org/web/packages/data.table/vignettes/datatable-reshape.html</a></p></li>
+</ol>
 </div>
 </div>
 

@@ -306,6 +306,18 @@ b_wide_tbl <-
 (b_wide_tbl)
 ```
 
+## References
+
+1. Introduction to `dplyr`. URL: https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html
+
+1. Column-wise operations. URL: https://cran.r-project.org/web/packages/dplyr/vignettes/colwise.html
+
+1. Row-wise operations. URL: https://cran.r-project.org/web/packages/dplyr/vignettes/rowwise.html
+
+1. Programming with `dplyr`. URL: https://cran.r-project.org/web/packages/dplyr/vignettes/programming.html
+
+1. Two-table verbs. URL: https://cran.r-project.org/web/packages/dplyr/vignettes/two-table.html
+
 # Data.table way {#dt}
 
 The first line of R codes in this chapter should be
@@ -482,6 +494,45 @@ c_summ_dt <- fake_dt[, lapply(.SD, mean), by = type,
                      .SDcols = c('x', 'z')]
 (c_summ_dt)
 ```
+
+## Convert wide to long table
+
+We use `melt()`.
+
+**Example:**
+
+```{r, warning=FALSE, message=FALSE}
+a_wide_dt <- 
+  data.table(ID = 1:5,
+             math_score = sample(50:100, 5, replace = TRUE),
+             stats_score = sample(50:100, 5, replace = TRUE),
+             english_score = sample(50:100, 5, replace = TRUE))
+(a_wide_dt)
+a_long_dt <- 
+  melt(a_wide_dt, id.vars = "ID", 
+       measure.vars = c("math_score", "stats_score", "english_score"),
+       variable.name = "subject",
+       variable.factor = FALSE,
+       value.name = "score")
+a_long_dt[, `:=`(subject = stringr::str_sub(subject, start = 1L, end = -7L))]
+(a_long_dt)
+```
+
+## Convert long to wide table
+
+We use `dcast()`.
+
+**Example:**
+```{r, warning=FALSE, message=FALSE}
+b_wide_dt <- dcast(a_long_dt, ID ~ subject, value.var = "score")
+(b_wide_dt)
+```
+
+## References
+
+1. Introduction to `data.table`. URL: https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html
+
+1. Efficient reshaping using `data.table`. URL: https://cran.r-project.org/web/packages/data.table/vignettes/datatable-reshape.html
 
 
 

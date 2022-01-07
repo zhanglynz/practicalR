@@ -34,3 +34,7 @@ leaflet-package
 shiny-package
 knitr-package
 convert-wide-to-long-table
+convert-wide-to-long-table-1
+convert-long-to-wide-table-1
+references
+references-1
