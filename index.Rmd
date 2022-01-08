@@ -386,6 +386,15 @@ new_DT  <- copy(DT)
 new_DT[, `:=`(new_var = func(existed_vars))]
 ```
 
+```{r, eval=FALSE}
+my_func <- function(a_dt)
+{# must do this to avoid side effect on a_dt!
+ dt <- copy(a_dt)  
+ ...
+}
+```
+
+
 If we care about memory and are aware of all possible *side effects* on the original `DT`, we can do
 ```{r, eval=FALSE}
 DT[, `:=`(new_var = func(existed_vars))]
